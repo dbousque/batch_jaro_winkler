@@ -12,7 +12,7 @@ matrix:
         - "3.7"
         - "3.8"
       install:
-        - cd python && python install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
       script:
         - cd test && pytest -vv -s
 
@@ -30,9 +30,9 @@ matrix:
         - "2.6"
         - "2.7"
       install:
-        - cd ruby && ./local_build.sh
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
       script:
-        - cd test && ruby test_behavior.rb && ruby test_correctness.rb
+        - ruby test_behavior.rb && ruby test_correctness.rb
 
     # Memory leaks
     - language: python
@@ -41,14 +41,12 @@ matrix:
         - sudo apt-get update
         - sudo apt-get install -y valgrind
       python:
-        - "3.3.0"
-        - "3.3"
         - "3.4"
         - "3.5"
         - "3.6"
         - "3.7"
         - "3.8"
       install:
-        - cd python && python install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
       script:
         - cd test && rm -Rf test_correctness.py && valgrind pytest -vv -s
