@@ -4,7 +4,7 @@ Fast batch jaro winkler distance implementation in C99 with Ruby and Python bind
 
 This project gets its performance from the pre-calculation of an optimized model in advance of the actual runtime calculations. Supports any encoding.
 
-C99, Python >= 3.3 and Ruby >= xxx ([Warning regarding ruby versions](#warning-regarding-ruby-versions))
+C99, Python >= 3.3 and Ruby >= 2.1 ([Warning regarding ruby versions](#warning-regarding-ruby-versions))
 
 Language specific parts:
   - [Python](#python)
