@@ -5,8 +5,7 @@ matrix:
         - linux
         - osx
       python:
-        - "3.3.0"
-        - "3.3"
+        # 3.3 missing from Travis
         - "3.4"
         - "3.5"
         - "3.6"
@@ -15,7 +14,7 @@ matrix:
       install:
         - cd python && python install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
       script:
-        - cd python/test && pytest -vv -s
+        - cd test && pytest -vv -s
 
     - language: ruby
       os:
@@ -33,7 +32,7 @@ matrix:
       install:
         - cd ruby && ./local_build.sh
       script:
-        - cd ruby/test && ruby test_behavior.rb && ruby test_correctness.rb
+        - cd test && ruby test_behavior.rb && ruby test_correctness.rb
 
     # Memory leaks
     - language: python
@@ -52,4 +51,4 @@ matrix:
       install:
         - cd python && python install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
       script:
-        - cd python/test && rm -Rf test_correctness.py && valgrind pytest -vv -s
+        - cd test && rm -Rf test_correctness.py && valgrind pytest -vv -s
