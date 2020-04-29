@@ -14,7 +14,7 @@ matrix:
       install:
         - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
       script:
-        - cd test && pytest -vv -s
+        - pytest -vv -s
 
     - language: ruby
       os:
@@ -49,4 +49,4 @@ matrix:
       install:
         - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
       script:
-        - cd test && rm -Rf test_correctness.py && valgrind pytest -vv -s
+        - rm -Rf test_correctness.py && valgrind pytest -vv -s
