@@ -15,7 +15,7 @@ Language specific parts:
 
 Linear scale for dramatic effect.
 
-![](benchmark.png?raw=true "")
+![](benchmark/benchmark.png?raw=true "")
 
 2 datasets are used for the benchmark: english words and chinese words. These datasets are fairly small (~ 5 MB). The bigger the dataset, the greater the speedup you get by using batch_jaro_winkler over other libraries.
 
@@ -25,7 +25,7 @@ Libraries used for comparison: [Levenshtein](https://github.com/ztane/python-Lev
 
 ## Installation
 
-Python: `pip3 install batch-jaro-winkler`
+Python: `pip3 install batch_jaro_winkler`
 
 Ruby: `gem install batch_jaro_winkler`
 
