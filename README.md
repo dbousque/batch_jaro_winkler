@@ -1,4 +1,6 @@
 # batch_jaro_winkler
+[![Build Status](https://travis-ci.org/dbousque/batch_jaro_winkler.svg?branch=master)](https://travis-ci.org/dbousque/batch_jaro_winkler)
+![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
 Fast batch jaro winkler distance implementation in C99 with Ruby and Python bindings.
 

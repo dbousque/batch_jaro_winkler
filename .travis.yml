@@ -1,33 +1,200 @@
+# Python 3.3 missing from Travis
 matrix:
   include:
+    # Linux - Python
     - language: python
-      os:
-        - linux
-        - osx
+      os: linux
       python:
-        # 3.3 missing from Travis
         - "3.4"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
+    - language: python
+      os: linux
+      python:
         - "3.5"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
+    - language: python
+      os: linux
+      python:
         - "3.6"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
+    - language: python
+      os: linux
+      python:
         - "3.7"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
+    - language: python
+      os: linux
+      python:
         - "3.8"
       install:
         - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
       script:
         - pytest -vv -s
 
+    # Linux - Ruby
     - language: ruby
-      os:
-        - linux
-        - osx
+      os: linux
       ruby:
         - "2.1.0"
+      install:
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
+      script:
+        - ruby test_behavior.rb && ruby test_correctness.rb
+    - language: ruby
+      os: linux
+      ruby:
         - "2.1"
+      install:
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
+      script:
+        - ruby test_behavior.rb && ruby test_correctness.rb
+    - language: ruby
+      os: linux
+      ruby:
         - "2.2"
+      install:
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
+      script:
+        - ruby test_behavior.rb && ruby test_correctness.rb
+    - language: ruby
+      os: linux
+      ruby:
         - "2.3"
+      install:
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
+      script:
+        - ruby test_behavior.rb && ruby test_correctness.rb
+    - language: ruby
+      os: linux
+      ruby:
         - "2.4"
+      install:
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
+      script:
+        - ruby test_behavior.rb && ruby test_correctness.rb
+    - language: ruby
+      os: linux
+      ruby:
         - "2.5"
-        - "2.6"
+      install:
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
+      script:
+        - ruby test_behavior.rb && ruby test_correctness.rb
+    - language: ruby
+      os: linux
+      ruby:
+        - "2.7"
+      install:
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
+      script:
+        - ruby test_behavior.rb && ruby test_correctness.rb
+
+    # OSX - Python
+    - language: python
+      os: osx
+      python:
+        - "3.4"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
+    - language: python
+      os: osx
+      python:
+        - "3.5"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
+    - language: python
+      os: osx
+      python:
+        - "3.6"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
+    - language: python
+      os: osx
+      python:
+        - "3.7"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
+    - language: python
+      os: osx
+      python:
+        - "3.8"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
+
+    # OSX - Ruby
+    - language: ruby
+      os: osx
+      ruby:
+        - "2.1.0"
+      install:
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
+      script:
+        - ruby test_behavior.rb && ruby test_correctness.rb
+    - language: ruby
+      os: osx
+      ruby:
+        - "2.1"
+      install:
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
+      script:
+        - ruby test_behavior.rb && ruby test_correctness.rb
+    - language: ruby
+      os: osx
+      ruby:
+        - "2.2"
+      install:
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
+      script:
+        - ruby test_behavior.rb && ruby test_correctness.rb
+    - language: ruby
+      os: osx
+      ruby:
+        - "2.3"
+      install:
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
+      script:
+        - ruby test_behavior.rb && ruby test_correctness.rb
+    - language: ruby
+      os: osx
+      ruby:
+        - "2.4"
+      install:
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
+      script:
+        - ruby test_behavior.rb && ruby test_correctness.rb
+    - language: ruby
+      os: osx
+      ruby:
+        - "2.5"
+      install:
+        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
+      script:
+        - ruby test_behavior.rb && ruby test_correctness.rb
+    - language: ruby
+      os: osx
+      ruby:
         - "2.7"
       install:
         - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
@@ -42,11 +209,51 @@ matrix:
         - sudo apt-get install -y valgrind
       python:
         - "3.4"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - "rm -Rf test_correctness.py && valgrind --log-fd=1 pytest -vv -s | grep 'definitely lost: 0 byte'"
+    - language: python
+      os: linux
+      before_install:
+        - sudo apt-get update
+        - sudo apt-get install -y valgrind
+      python:
         - "3.5"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - "rm -Rf test_correctness.py && valgrind --log-fd=1 pytest -vv -s | grep 'definitely lost: 0 byte'"
+    - language: python
+      os: linux
+      before_install:
+        - sudo apt-get update
+        - sudo apt-get install -y valgrind
+      python:
         - "3.6"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - "rm -Rf test_correctness.py && valgrind --log-fd=1 pytest -vv -s | grep 'definitely lost: 0 byte'"
+    - language: python
+      os: linux
+      before_install:
+        - sudo apt-get update
+        - sudo apt-get install -y valgrind
+      python:
         - "3.7"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - "rm -Rf test_correctness.py && valgrind --log-fd=1 pytest -vv -s | grep 'definitely lost: 0 byte'"
+    - language: python
+      os: linux
+      before_install:
+        - sudo apt-get update
+        - sudo apt-get install -y valgrind
+      python:
         - "3.8"
       install:
         - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
       script:
-        - rm -Rf test_correctness.py && valgrind pytest -vv -s
+        - "rm -Rf test_correctness.py && valgrind --log-fd=1 pytest -vv -s | grep 'definitely lost: 0 byte'"
