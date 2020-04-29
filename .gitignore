@@ -1,0 +1,11 @@
+*.o
+python/build
+python/lib
+python/dist
+python/ext
+python/README
+__pycache__
+.cache
+ruby/ext/batch_jaro_winkler/ext
+.DS_Store
+batch_jaro_winkler*.gem

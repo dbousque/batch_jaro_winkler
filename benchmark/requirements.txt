@@ -1,0 +1,6 @@
+textdistance==4.1.5
+jaro-winkler==2.0.0
+pyjarowinkler==1.8
+jellyfish==0.7.1
+python-Levenshtein==0.12.0
+py-stringmatching==0.4.1
