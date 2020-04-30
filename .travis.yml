@@ -1,7 +1,7 @@
 # Python 3.3 missing from Travis
 matrix:
   include:
-    # Linux - Python
+    # Python
     - language: python
       os: linux
       python:
@@ -43,7 +43,7 @@ matrix:
       script:
         - pytest -vv -s
 
-    # Linux - Ruby
+    # Ruby
     - language: ruby
       os: linux
       ruby:
@@ -101,47 +101,7 @@ matrix:
       script:
         - ruby test_behavior.rb && ruby test_correctness.rb
 
-    # OSX - Python
-    - language: python
-      os: osx
-      python:
-        - "3.4"
-      install:
-        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
-      script:
-        - pytest -vv -s
-    - language: python
-      os: osx
-      python:
-        - "3.5"
-      install:
-        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
-      script:
-        - pytest -vv -s
-    - language: python
-      os: osx
-      python:
-        - "3.6"
-      install:
-        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
-      script:
-        - pytest -vv -s
-    - language: python
-      os: osx
-      python:
-        - "3.7"
-      install:
-        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
-      script:
-        - pytest -vv -s
-    - language: python
-      os: osx
-      python:
-        - "3.8"
-      install:
-        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
-      script:
-        - pytest -vv -s
+    # For some reason, Python on OSX not supported by default, maybe add it later
 
     # OSX - Ruby
     - language: ruby
@@ -201,8 +161,9 @@ matrix:
       script:
         - ruby test_behavior.rb && ruby test_correctness.rb
 
-    # Memory leaks
+    # Memory leaks, MRI will leak according to valgrind due to it's garbage collector implementation, so don't test for Ruby
     - language: python
+      name: 'Memory leaks Python 3.4'
       os: linux
       before_install:
         - sudo apt-get update
@@ -214,6 +175,7 @@ matrix:
       script:
         - "rm -Rf test_correctness.py && valgrind --log-fd=1 pytest -vv -s | grep 'definitely lost: 0 byte'"
     - language: python
+      name: 'Memory leaks Python 3.5'
       os: linux
       before_install:
         - sudo apt-get update
@@ -225,6 +187,7 @@ matrix:
       script:
         - "rm -Rf test_correctness.py && valgrind --log-fd=1 pytest -vv -s | grep 'definitely lost: 0 byte'"
     - language: python
+      name: 'Memory leaks Python 3.6'
       os: linux
       before_install:
         - sudo apt-get update
@@ -236,6 +199,7 @@ matrix:
       script:
         - "rm -Rf test_correctness.py && valgrind --log-fd=1 pytest -vv -s | grep 'definitely lost: 0 byte'"
     - language: python
+      name: 'Memory leaks Python 3.7'
       os: linux
       before_install:
         - sudo apt-get update
@@ -247,6 +211,7 @@ matrix:
       script:
         - "rm -Rf test_correctness.py && valgrind --log-fd=1 pytest -vv -s | grep 'definitely lost: 0 byte'"
     - language: python
+      name: 'Memory leaks Python 3.8'
       os: linux
       before_install:
         - sudo apt-get update
