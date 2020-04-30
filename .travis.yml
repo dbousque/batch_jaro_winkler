@@ -103,39 +103,7 @@ matrix:
 
     # For some reason, Python on OSX not supported by default, maybe add it later
 
-    # OSX - Ruby
-    - language: ruby
-      os: osx
-      ruby:
-        - "2.1.0"
-      install:
-        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
-      script:
-        - ruby test_behavior.rb && ruby test_correctness.rb
-    - language: ruby
-      os: osx
-      ruby:
-        - "2.1"
-      install:
-        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
-      script:
-        - ruby test_behavior.rb && ruby test_correctness.rb
-    - language: ruby
-      os: osx
-      ruby:
-        - "2.2"
-      install:
-        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
-      script:
-        - ruby test_behavior.rb && ruby test_correctness.rb
-    - language: ruby
-      os: osx
-      ruby:
-        - "2.3"
-      install:
-        - cd ruby && ./local_build.sh && cd test && ./install_dependencies.sh
-      script:
-        - ruby test_behavior.rb && ruby test_correctness.rb
+    # OSX - Ruby, machine setup fails before 2.4
     - language: ruby
       os: osx
       ruby:

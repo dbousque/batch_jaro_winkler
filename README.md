@@ -102,6 +102,103 @@ Once we have an exportable model, we can make runtime score calculations. A prer
 
 Then come the score calculations. We can perform _jaro_ or _jaro winkler_ distance calculations. We can set the `min_score` argument so that only candidates matching with at least a certain score are returned. This argument overrides the `min_score` that we may have set for each candidate when building the exportable model. A high value improves the performance, see the [benchmark](#benchmark). We can also set the `n_best_results` argument, it filters the candidates and makes the runtime function return only the best scoring candidates. A small value (< 20% of the dataset size) improves the performance, see the [benchmark](#benchmark).
 
+## How does it work?
+
+One possible approach to performing jaro winkler distance calculations against a set of
+values is to test each value one after the other. This project leverages the fact that
+values are known in advance to build a data structure (a _model_) that prevents us
+from looping to find matches, using a hash table linking to a list of matches instead.
+More often than not, you only care about matches that have a score higher than a threshold
+value. We benefit from this fact by skipping candidates that can't match the threshold as the
+calculations go on, allowing us to speed up further.
+
+We calculate the jaro winkler distance in 2 steps. The first one calculates the number of
+matches for a candidate, and populates a 'flags' data structure that is used later on
+to calculate the number of transpositions.
+
+These would be the flags for 'im marhta yo' as the input and 'martha' as the candidate:
+
+```
+input_flags = [0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+cand_flags_flags = [1, 1, 1, 1, 1, 1]
+```
+
+The data structure used to speed up the finding of matching characters is a hash table
+linking characters to their occurrences in candidates. It is stored this way:
+```
+{
+  'a': |  cand1 |  cand1 |  cand1 |  cand1 |  nb_oc |  ind1 |  ind2 |  ind3 |  cand2 | ...,
+  'b': |  cand1 |  cand1 |  cand1 |  cand1 |  nb_oc |  ind1 |  ind2 |  cand2 |  ...,
+}
+```
+Where 'a' and 'b' are characters which appear in candidates, 'cand1' and 'cand2' are the
+indexes of the candidates in the model, 'nb_oc' is the number of occurrences of the character in
+the candidate and 'ind1', 'ind2' etc. are the indexes of the character's occurrences
+in the candidate.
+
+Additionally, we can know in advance how many occurrences matches we need to satisfy the
+`min_score` requirement. This allows us to ignore candidates once we know that they won't
+be able to match. For example, with a `min_score` of 1.0:
+
+```
+runtime_input_len = 8, candidate_len = 8 => We know that we must have 8 matches
+runtime_input_len = 9, candidate_len = 8 => We know that it is impossible that they match
+```
+
+With a `min_score` of 0.9:
+
+```
+runtime_input_len = 8, candidate_len = 8 =>
+  (3.0 * min_score * candidate_len * runtime_input_len - (candidate_len * runtime_input_len)) / (candidate_len + runtime_input_len)
+  => 6.8, we need at least 7 matches
+runtime_input_len = 9, candidate_len = 8 =>
+  (3.0 * min_score * candidate_len * runtime_input_len - (candidate_len * runtime_input_len)) / (candidate_len + runtime_input_len)
+  => 7.2, we need at least 8 matches
+```
+
+This data representation allows us to have an efficient runtime, which looks something like this (simplified):
+
+```python
+for i_char, char in runtime_input:
+  remaining_chars = len(runtime_input) - i_char
+  occurrences = char_matches[char]
+  for candidate_ind, indexes in occurrences:
+    enough_matches_possible = candidates[candidate_ind].nb_matches + remaining_chars >= candidates[candidate_ind].required_nb_matches
+    if not enough_matches_possible:
+      continue
+    for ind in indexes:
+      match_in_search_range = ind >= i_char - candidates[candidate_ind].search_range and ind <= i_char + candidates[candidate_ind].search_range
+      if match_in_search_range:
+        candidates[candidate_ind].nb_matches += 1
+        runtime_input_flags[candidate_ind][i_char] = 1
+        candidates_flags[candidate_ind][ind] = 1
+        break
+```
+
+Once this is done, all that is left to do is to calculate the number of transpositions
+for possibly matching candidates (candidates that have a number of matches at least equal
+to the required number of matches) from the flags.
+
+Things that were tried but did not improve performance. They could still bring performance gains if done right:
+  - Instead of iterating over all occurrences matches for a character everytime, keep a linked list (as offsets in the candidates' array) of possible
+    candidate occurrences for a given character. We can eliminate candidate occurrences when we know a candidate
+    can't match, or when we explored all occurrences for this candidate and this character.
+  - Using bits instead of uint8_t for runtime_input_flags and candidate_flags.
+  - Keep track of the number of potential matches left for a candidate, that way we can skip impossible candidates
+    in try_to_match_occurrence the same way we do with nb_matches + remaining_chars < required_nb_matches
+
+Things that were not tried:
+  - Sort candidates by jaro distance when building the model. This would greatly optimize cache usage, as potential
+    candidates for a particular runtime_input would all be near one another, making memory accesses more efficient.
+    Right now we are using an approximation of this, sorting by alphabetical order + length.
+  - Better split candidates across each thread's local storage so that each thread takes around the same time to finish.
+    This would greatly improve the multi-threading performance, which caps at around 3 times faster than with 1 thread,
+    even with 6 threads.
+  - If bits are used for the flags, maybe use binary operations for transpositions calculation? Seems unlikely.
+  - Use SIMD instructions, probably tough because there is a lot of branching right now.
+  - Keep track of the current best score when finding matches, to invalidate candidates that are guaranteed to
+    have a smaller score. Same when calculating transpositions.
+
 ## Python
 
 ```python
@@ -514,104 +611,6 @@ typedef struct
   uint32_t  candidate_length;
 } bjw_result;
 ```
-
-## How does it work?
-
-One possible approach to performing jaro winkler distance calculations against a set of
-values is to test each value one after the other. This project leverages the fact that
-values are known in advance to build a data structure (a _model_) that prevents us
-from looping to find matches, using a hash table linking to a list of matches instead.
-More often than not, you only care about matches that have a score higher than a threshold
-value. We benefit from this fact by skipping candidates that can't match the threshold as the
-calculations go on, allowing us to speed up further.
-
-We calculate the jaro winkler distance in 2 steps. The first one calculates the number of
-matches for a candidate, and populates a 'flags' data structure that is used later on
-to calculate the number of transpositions.
-
-These would be the flags for 'im marhta yo' as the input and 'martha' as the candidate:
-
-```
-input_flags = [0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0]
-cand_flags_flags = [1, 1, 1, 1, 1, 1]
-```
-
-The data structure used to speed up the finding of matching characters is a hash table
-linking characters to their occurrences in candidates. It is stored this way:
-```
-{
-  'a': |  cand1 |  cand1 |  cand1 |  cand1 |  nb_oc |  ind1 |  ind2 |  ind3 |  cand2 | ...,
-  'b': |  cand1 |  cand1 |  cand1 |  cand1 |  nb_oc |  ind1 |  ind2 |  cand2 |  ...,
-}
-```
-Where 'a' and 'b' are characters which appear in candidates, 'cand1' and 'cand2' are the
-indexes of the candidates in the model, 'nb_oc' is the number of occurrences of the character in
-the candidate and 'ind1', 'ind2' etc. are the indexes of the character's occurrences
-in the candidate.
-
-Additionally, we can know in advance how many occurrences matches we need to satisfy the
-`min_score` requirement. This allows us to ignore candidates once we know that they won't
-be able to match. For example, with a `min_score` of 1.0:
-
-```
-runtime_input_len = 8, candidate_len = 8 => We know that we must have 8 matches
-runtime_input_len = 9, candidate_len = 8 => We know that it is impossible that they match
-```
-
-With a `min_score` of 0.9:
-
-```
-runtime_input_len = 8, candidate_len = 8 =>
-  (3.0 * min_score * candidate_len * runtime_input_len - (candidate_len * runtime_input_len)) / (candidate_len + runtime_input_len)
-  => 6.8, we need at least 7 matches
-runtime_input_len = 9, candidate_len = 8 =>
-  (3.0 * min_score * candidate_len * runtime_input_len - (candidate_len * runtime_input_len)) / (candidate_len + runtime_input_len)
-  => 7.2, we need at least 8 matches
-```
-
-This data representation allows us to have an efficient runtime, which looks something like this (simplified):
-
-```python
-for i_char, char in runtime_input:
-  remaining_chars = len(runtime_input) - i_char
-  occurrences = char_matches[char]
-  for candidate_ind, indexes in occurrences:
-    enough_matches_possible = candidates[candidate_ind].nb_matches + remaining_chars >= candidates[candidate_ind].required_nb_matches
-    if not enough_matches_possible:
-      continue
-    for ind in indexes:
-      match_in_search_range = ind >= i_char - candidates[candidate_ind].search_range and ind <= i_char + candidates[candidate_ind].search_range
-      if match_in_search_range:
-        candidates[candidate_ind].nb_matches += 1
-        runtime_input_flags[candidate_ind][i_char] = 1
-        candidates_flags[candidate_ind][ind] = 1
-        break
-```
-
-Once this is done, all that is left to do is to calculate the number of transpositions
-for possibly matching candidates (candidates that have a number of matches at least equal
-to the required number of matches) from the flags.
-
-Things that were tried but did not improve performance. They could still bring performance gains if done right:
-  - Instead of iterating over all occurrences matches for a character everytime, keep a linked list (as offsets in the candidates' array) of possible
-    candidate occurrences for a given character. We can eliminate candidate occurrences when we know a candidate
-    can't match, or when we explored all occurrences for this candidate and this character.
-  - Using bits instead of uint8_t for runtime_input_flags and candidate_flags.
-  - Keep track of the number of potential matches left for a candidate, that way we can skip impossible candidates
-    in try_to_match_occurrence the same way we do with nb_matches + remaining_chars < required_nb_matches
-
-Things that were not tried:
-  - Sort candidates by jaro distance when building the model. This would greatly optimize cache usage, as potential
-    candidates for a particular runtime_input would all be near one another, making memory accesses more efficient.
-    Right now we are using an approximation of this, sorting by alphabetical order + length.
-  - Better split candidates across each thread's local storage so that each thread takes around the same time to finish.
-    This would greatly improve the multi-threading performance, which caps at around 3 times faster than with 1 thread,
-    even with 6 threads.
-  - If bits are used for the flags, maybe use binary operations for transpositions calculation? Seems unlikely.
-  - Use SIMD instructions, probably tough because there is a lot of branching right now.
-  - Keep track of the current best score when finding matches, to invalidate candidates that are guaranteed to
-    have a smaller score. Same when calculating transpositions.
-
 
 ## Warning regarding Ruby versions
 If you use older MRI versions (< 2.5.8 or between 2.6.0 and 2.6.4 included), you may experience memory leaks. It could somehow be related to MRI's string implementation, which was fixed at the end of 2019: https://github.com/ruby/ruby/compare/v2_6_4...v2_6_5#diff-7a2f2c7dfe0bf61d38272aeaf68ac768R2117. Work was done in this library to mitigate the issue, but the absence of leaks is not guaranteed. If you're interested, you can most likely reproduce the leak with this program, change `utf-32le` to `utf-32` to watch to memory leak disappear:
