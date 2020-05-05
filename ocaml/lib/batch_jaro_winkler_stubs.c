@@ -380,13 +380,13 @@ CAMLprim value	caml_c_jaro_winkler_distance(value ml_encoding, value ml_min_scor
 		{
 			decode_4_bytes(c_results[i_result].candidate, c_results[i_result].candidate_length, encoding, candidate, &candidate_length_bytes);
 			ml_candidate_string = caml_alloc_string(candidate_length_bytes);
-			memcpy(String_val(ml_candidate_string), candidate, candidate_length_bytes);
+			memcpy((char*)(String_val(ml_candidate_string)), candidate, candidate_length_bytes);
 			bzero(candidate, candidate_length_bytes);
 		}
 		else
 		{
 			ml_candidate_string = caml_alloc_string(c_results[i_result].candidate_length * char_width);
-			memcpy(String_val(ml_candidate_string), c_results[i_result].candidate, c_results[i_result].candidate_length * char_width);
+			memcpy((char*)(String_val(ml_candidate_string)), c_results[i_result].candidate, c_results[i_result].candidate_length * char_width);
 		}
 
 		ml_result = caml_alloc(2, 0);
