@@ -14,4 +14,3 @@ batch_jaro_winkler*.gem
 ocaml/lib/_build
 ocaml/test/_build
 .merlin
-ocaml/lib/ext
