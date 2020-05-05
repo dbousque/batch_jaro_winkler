@@ -268,7 +268,8 @@ CAMLprim value	caml_c_build_exportable_model(value ml_encoding, value ml_nb_runt
 	free(candidates);
 	free(candidates_lengths);
 
-	ml_exportable_model = caml_alloc_initialized_string(res_model_size, exportable_model);
+	ml_exportable_model = caml_alloc_string(res_model_size);
+	memcpy((char*)(String_val(ml_exportable_model)), exportable_model, res_model_size);
 	free(exportable_model);
 	CAMLreturn(ml_exportable_model);
 }
@@ -278,7 +279,6 @@ CAMLprim value	caml_c_build_runtime_model(value ml_exportable_model)
 	CAMLparam1(ml_exportable_model);
 	void		*exportable_model;
 	void		*runtime_model;
-	uint32_t	runtime_model_length;
 
 	exportable_model = (void*)String_val(ml_exportable_model);
 	runtime_model = bjw_build_runtime_model(exportable_model);
@@ -321,6 +321,7 @@ CAMLprim value	caml_c_jaro_winkler_distance(value ml_encoding, value ml_min_scor
 	uint32_t	candidate_length_bytes;
 	uint32_t	longest_result;
 
+	candidate = NULL;
 	memcpy(encoding, String_val(ml_encoding), caml_string_length(ml_encoding) + 1);
 	char_width = 1;
 	if (strcmp(encoding, "char_width_2") == 0)
