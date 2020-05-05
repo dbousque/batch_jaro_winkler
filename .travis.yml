@@ -106,77 +106,77 @@ matrix:
       env:
         - OCAML_VERSION=4.00
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.01
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.02
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.03
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.04
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.05
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.06
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.07
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.08
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.09
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.10
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
 
@@ -213,77 +213,77 @@ matrix:
       env:
         - OCAML_VERSION=4.00
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.01
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.02
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.03
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.04
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.05
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.06
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.07
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.08
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.09
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.10
       install:
-        - cd ocaml && ./travis-ocaml.sh && cd lib && ./local_build.sh
+        - cd ocaml && ./.travis-ocaml.sh && cd lib && ./local_build.sh
       script:
         - cd ../test && dune build && ./_build/default/test.exe
 
