@@ -280,7 +280,7 @@ CAMLprim value	caml_c_build_runtime_model(value ml_exportable_model)
 	void		*runtime_model;
 	uint32_t	runtime_model_length;
 
-	exportable_model = String_val(ml_exportable_model);
+	exportable_model = (void*)String_val(ml_exportable_model);
 	runtime_model = bjw_build_runtime_model(exportable_model);
 	if (!runtime_model)
 	{
