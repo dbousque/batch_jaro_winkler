@@ -8,77 +8,77 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.01
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.02
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.03
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.04
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.05
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.06
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.07
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.08
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.09
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.10
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
 
     # Python
     - language: python
@@ -189,77 +189,77 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.01
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.02
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.03
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.04
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.05
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.06
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.07
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.08
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.09
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: osx
       env:
         - OCAML_VERSION=4.10
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - $(opam env) && cd ../test && dune build && ./_build/default/test.exe
+        - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
 
     # OSX - Ruby, machine setup fails before 2.4
     - language: ruby
@@ -298,7 +298,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - "$(opam env) && cd ../test && dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
+        - "cd ../test && /home/travis/.opam/default/bin/dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
     - os: linux
       before_install:
         - sudo apt-get update
@@ -308,7 +308,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - "$(opam env) && cd ../test && dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
+        - "cd ../test && /home/travis/.opam/default/bin/dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
     - os: linux
       before_install:
         - sudo apt-get update
@@ -318,7 +318,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - "$(opam env) && cd ../test && dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
+        - "cd ../test && /home/travis/.opam/default/bin/dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
     - os: linux
       before_install:
         - sudo apt-get update
@@ -328,7 +328,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - "$(opam env) && cd ../test && dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
+        - "cd ../test && /home/travis/.opam/default/bin/dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
     - os: linux
       before_install:
         - sudo apt-get update
@@ -338,7 +338,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - "$(opam env) && cd ../test && dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
+        - "cd ../test && /home/travis/.opam/default/bin/dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
     - os: linux
       before_install:
         - sudo apt-get update
@@ -348,7 +348,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - "$(opam env) && cd ../test && dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
+        - "cd ../test && /home/travis/.opam/default/bin/dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
     - os: linux
       before_install:
         - sudo apt-get update
@@ -358,7 +358,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - "$(opam env) && cd ../test && dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
+        - "cd ../test && /home/travis/.opam/default/bin/dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
     - os: linux
       before_install:
         - sudo apt-get update
@@ -368,7 +368,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - "$(opam env) && cd ../test && dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
+        - "cd ../test && /home/travis/.opam/default/bin/dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
     - os: linux
       before_install:
         - sudo apt-get update
@@ -378,7 +378,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - "$(opam env) && cd ../test && dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
+        - "cd ../test && /home/travis/.opam/default/bin/dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
     - os: linux
       before_install:
         - sudo apt-get update
@@ -388,7 +388,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - "$(opam env) && cd ../test && dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
+        - "cd ../test && /home/travis/.opam/default/bin/dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
     - os: linux
       before_install:
         - sudo apt-get update
@@ -398,7 +398,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - "$(opam env) && cd ../test && dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
+        - "cd ../test && /home/travis/.opam/default/bin/dune build && valgrind --log-fd=1 ./_build/default/test.exe | grep 'definitely lost: 0 byte'"
 
     # Memory leaks, MRI will leak according to valgrind due to it's garbage collector implementation, so don't test for Ruby
     - language: python
