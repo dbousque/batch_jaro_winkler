@@ -40,7 +40,8 @@ matrix:
         - OCAML_VERSION=4.03
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
-      script:- ls -la /home/travis
+      script:
+        - ls -la /home/travis
         - ls -la /home/travis/.opam
         - ls -la /home/travis/.opam/default
         - ls -la /home/travis/.opam/default/bin
