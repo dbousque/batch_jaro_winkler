@@ -8,6 +8,10 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
+        - ls -la /home/travis
+        - ls -la /home/travis/.opam
+        - ls -la /home/travis/.opam/default
+        - ls -la /home/travis/.opam/default/bin
         - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
@@ -15,6 +19,10 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
+        - ls -la /home/travis
+        - ls -la /home/travis/.opam
+        - ls -la /home/travis/.opam/default
+        - ls -la /home/travis/.opam/default/bin
         - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
@@ -22,13 +30,20 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
+        - ls -la /home/travis
+        - ls -la /home/travis/.opam
+        - ls -la /home/travis/.opam/default
+        - ls -la /home/travis/.opam/default/bin
         - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
         - OCAML_VERSION=4.03
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
-      script:
+      script:- ls -la /home/travis
+        - ls -la /home/travis/.opam
+        - ls -la /home/travis/.opam/default
+        - ls -la /home/travis/.opam/default/bin
         - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
@@ -36,6 +51,10 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
+        - ls -la /home/travis
+        - ls -la /home/travis/.opam
+        - ls -la /home/travis/.opam/default
+        - ls -la /home/travis/.opam/default/bin
         - cd ../test && /home/travis/.opam/default/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
