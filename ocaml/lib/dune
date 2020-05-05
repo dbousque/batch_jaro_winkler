@@ -1,0 +1,8 @@
+(include_subdirs unqualified)
+
+(library
+ (name            batch_jaro_winkler)
+ (public_name     batch_jaro_winkler)
+ (foreign_stubs
+  (language c)
+  (names batch_jaro_winkler_stubs batch_jaro_winkler)))

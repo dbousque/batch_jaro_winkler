@@ -2,15 +2,16 @@
 [![Build Status](https://travis-ci.org/dbousque/batch_jaro_winkler.svg?branch=master)](https://travis-ci.org/dbousque/batch_jaro_winkler)
 ![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
-Fast batch jaro winkler distance implementation in C99 with Ruby and Python bindings.
+Fast batch jaro winkler distance implementation in C99 with Ruby, OCaml and Python bindings.
 
 This project gets its performance from the pre-calculation of an optimized model in advance of the actual runtime calculations. Supports any encoding.
 
-C99, Python >= 3.3 and Ruby >= 2.1 ([Warning regarding ruby versions](#warning-regarding-ruby-versions))
+C99, Python >= 3.3, OCaml >= 4.0 and Ruby >= 2.1 ([Warning regarding ruby versions](#warning-regarding-ruby-versions))
 
 Language specific parts:
   - [Python](#python)
   - [Ruby](#ruby)
+  - [OCaml](#ocaml)
   - [C](#c)
 
 ## Benchmark
@@ -28,6 +29,8 @@ Libraries used for comparison: [Levenshtein](https://github.com/ztane/python-Lev
 ## Installation
 
 Python: `pip3 install batch_jaro_winkler`
+
+OCaml: `opam update && opam install batch_jaro_winkler`
 
 Ruby: `gem install batch_jaro_winkler`
 
@@ -433,6 +436,106 @@ n_best_results      | Integer      | Makes the function return the `n_best_resul
 Returns an array of arrays containing the candidates and the matching scores, following this schema: `[['\u4E2D\u56FD', 0.0], ['hiz', 0.5]]`.
 
 
+## OCaml
+
+`test_bjw.ml`
+```ocaml
+module Bjw = Batch_jaro_winkler
+
+let () =
+  let encoding = Bjw.Encoding.UTF8 in
+  let candidates = [("héllo", None) ; ("中国", None) ; ("hiz", None)] in
+  let exportable_model = Bjw.build_exportable_model ~encoding candidates in
+  let runtime_model = Bjw.build_runtime_model exportable_model in
+  let res = Bjw.jaro_winkler_distance ~encoding runtime_model "hélloz" in
+  (* res = [("中国", 0.0) ; ("hiz", 0.5) ; ("héllo", 0.9666666388511658)] *)
+  List.iter (fun (candidate, score) -> Printf.printf "'%s': %f\n" candidate score) res
+```
+
+`dune`
+```
+(executable
+ (name test_bjw)
+ (libraries batch_jaro_winkler))
+```
+
+```
+$ dune build
+$ ./_build/default/test_bjw.exe
+'héllo': 0.966667
+'hiz': 0.500000
+'中国': 0.000000
+```
+
+- #### build_exportable_model
+
+```ocaml
+val build_exportable_model : encoding:Encoding.t -> ?nb_runtime_threads:int ->
+  (string * float option) list -> string
+let build_exportable_model ~encoding ?nb_runtime_threads:(nb_runtime_threads=1) candidates
+```
+Parameter           | Type                         | Comment
+------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------
+encoding            | Encoding.t                   | One of `{ASCII, UTF8, UTF16, UTF32, CHAR_WIDTH_1, CHAR_WIDTH_2, CHAR_WIDTH_4}`. Describes the encoding of the string passed in the `candidates` parameter. You can use a custom fixed-width encoding with `CHAR_WIDTH_1`, `CHAR_WIDTH_2` and `CHAR_WIDTH_4`.
+nb_runtime_threads  | int                          | The number of threads to use at runtime (`jaro_distance` and `jaro_winkler_distance`).
+candidates          | (string * float option) list | A list containing the strings to match runtime values against, and optionally the minimum matching score required at runtime. Must respect the following schema: `[("héllo", None) ; ("中国", Some 0.5)]`. If one candidate has a `min_score`, all of them must have one. If you give a minimum score for a candidate, it is only returned at runtime if the matching score is higher than its min score specified here, except if we manually pass a `min_score` at runtime, which takes precedence.
+
+Returns a string.
+
+
+- #### build_runtime_model
+
+```ocaml
+val build_runtime_model : string -> runtime_model
+let build_runtime_model exportable_model
+```
+Parameter           | Type      | Comment
+------------------- | --------- | ---------------------------------------------------------------------------------------------------
+exportable_model    | string    | An exportable model built with `build_exportable_model`.
+
+Returns a `runtime_model` that you can then pass as argument to one of the runtime functions: `jaro_distance` and `jaro_winkler_distance`.
+
+
+- #### jaro_winkler_distance
+
+```ocaml
+val jaro_winkler_distance : encoding:Encoding.t -> ?min_score:float -> ?weight:float ->
+  ?threshold:float -> ?n_best_results:int option -> runtime_model -> string -> (string * float) list
+let jaro_winkler_distance ~encoding ?min_score:(min_score=(-1.0)) ?weight:(weight=0.1)
+  ?threshold:(threshold=0.7) ?n_best_results:(n_best_results=None) runtime_model input
+```
+Parameter           | Type          | Comment
+------------------- | ------------- | ---------------------------------------------------------------------------------------------------
+encoding            | Encoding.t    | One of `{ASCII, UTF8, UTF16, UTF32, CHAR_WIDTH_1, CHAR_WIDTH_2, CHAR_WIDTH_4}`. Describes the encoding of the string passed in the `input` parameter. You can use a custom fixed-width encoding with `CHAR_WIDTH_1`, `CHAR_WIDTH_2` and `CHAR_WIDTH_4`. The encoding must match the one used to build the exportable model.
+min_score           | float         | If set, the function only returns the candidates that have a matching score at least as high as this value. Improves performance. Takes precedence over the min scores that may be set for each candidate when building the exportable model.
+weight              | float         | The jaro winkler algorithm gives a scoring bonus for matching prefixes, this parameter controls how big the bonus is. This value must be >= 0.0 and <= 0.25. For the standard jaro winkler score calculation, use the default value.
+threshold           | float         | The jaro winkler algorithm gives a scoring bonus for matching prefixes, this parameter controls what the minimum score should be as a condition for applying the bonus. For the standard jaro winkler score calculation, use the default value.
+n_best_results      | int           | Makes the function return the `n_best_results` best scoring candidates only. Improves performance.
+runtime_model       | runtime_model | Value returned by `build_runtime_model`.
+input               | string        | The input to get scores for.
+
+Returns a list of `string * float` tuples containing the candidates and the matching scores, following this schema: `[("中国", 0.0) ; ("hiz", 0.5)]`.
+
+- #### jaro_distance
+
+```ocaml
+val jaro_distance : encoding:Encoding.t -> ?min_score:float -> ?n_best_results:int option ->
+  runtime_model -> string -> (string * float) list
+let jaro_distance ~encoding ?min_score:(min_score=(-1.0)) ?n_best_results:(n_best_results=None)
+  runtime_model input
+```
+Parameter           | Type          | Comment
+------------------- | ------------- | ---------------------------------------------------------------------------------------------------
+encoding            | Encoding.t    | One of `{ASCII, UTF8, UTF16, UTF32, CHAR_WIDTH_1, CHAR_WIDTH_2, CHAR_WIDTH_4}`. Describes the encoding of the string passed in the `input` parameter. You can use a custom fixed-width encoding with `CHAR_WIDTH_1`, `CHAR_WIDTH_2` and `CHAR_WIDTH_4`. The encoding must match the one used to build the exportable model.
+min_score           | float         | If set, the function only returns the candidates that have a matching score at least as high as this value. Improves performance. Takes precedence over the min scores that may be set for each candidate when building the exportable model.
+n_best_results      | int           | Makes the function return the `n_best_results` best scoring candidates only. Improves performance.
+runtime_model       | runtime_model | Value returned by `build_runtime_model`.
+input               | string        | The input to get scores for.
+
+Returns a list of `string * float` tuples containing the candidates and the matching scores, following this schema: `[("中国", 0.0) ; ("hiz", 0.5)]`.
+
+
+
 ## C
 
 The files you need are in the `lib` folder.
@@ -543,7 +646,7 @@ Parameter           | Type      | Comment
 ------------------- | --------- | ---------------------------------------------------------------------------------------------------
 exportable_model    | void*     | An exportable model built with `bjw_build_exportable_model`.
 
-Returns an object that you can then pass as argument to one of the runtime functions: `bjw_jaro_distance` and `bjw_jaro_winkler_distance`. You must call `bjw_free_runtime_model` when you are done using it.
+Returns a buffer that you can then pass as argument to one of the runtime functions: `bjw_jaro_distance` and `bjw_jaro_winkler_distance`. You must call `bjw_free_runtime_model` when you are done using it.
 
 - #### bjw_free_runtime_model
 

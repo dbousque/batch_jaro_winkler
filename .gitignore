@@ -9,3 +9,9 @@ __pycache__
 ruby/ext/batch_jaro_winkler/ext
 .DS_Store
 batch_jaro_winkler*.gem
+*.cmi
+*.cmx
+ocaml/lib/_build
+ocaml/test/_build
+.merlin
+ocaml/lib/ext

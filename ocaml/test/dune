@@ -1,0 +1,3 @@
+(executable
+ (name test)
+ (libraries batch_jaro_winkler))

@@ -1,0 +1,2 @@
+(lang dune 2.5)
+(name batch_jaro_winkler)
