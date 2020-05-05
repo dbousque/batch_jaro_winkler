@@ -8,7 +8,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - find /home/travis/.opam -name \* -print
+        - opam list
         - cd ../test && /home/travis/.opam/$(ls /home/travis/.opam | grep ocaml-base-compiler)/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
@@ -16,7 +16,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - find /home/travis/.opam -name \* -print
+        - opam list
         - cd ../test && /home/travis/.opam/$(ls /home/travis/.opam | grep ocaml-base-compiler)/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
@@ -24,7 +24,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - find /home/travis/.opam -name \* -print
+        - opam list
         - cd ../test && /home/travis/.opam/$(ls /home/travis/.opam | grep ocaml-base-compiler)/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
@@ -32,7 +32,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - find /home/travis/.opam -name \* -print
+        - opam list
         - cd ../test && /home/travis/.opam/$(ls /home/travis/.opam | grep ocaml-base-compiler)/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
@@ -40,7 +40,7 @@ matrix:
       install:
         - cd ocaml && ./.travis-ocaml.sh && cd lib && cp -R ../../lib ext && opam install -y .
       script:
-        - find /home/travis/.opam -name \* -print
+        - opam list
         - cd ../test && /home/travis/.opam/$(ls /home/travis/.opam | grep ocaml-base-compiler)/bin/dune build && ./_build/default/test.exe
     - os: linux
       env:
