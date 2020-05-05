@@ -5,7 +5,7 @@ maintainer: "Dominik Bousquet <bousquet.dominik@gmail.com>"
 authors: [ "Dominik Bousquet" ]
 license: "MIT"
 homepage: "https://github.com/dbousque/batch_jaro_winkler"
-synopsis: "Fast batch jaro winkler distance implementation in C99."
+synopsis: "Fast batch jaro winkler distance implementation in C99"
 description: "This project gets its performance from the pre-calculation of an optimized model in advance of the actual runtime calculations. Supports any encoding."
 
 build: [
