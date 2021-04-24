@@ -1,6 +1,6 @@
 opam-version: "2.0"
 name: "batch_jaro_winkler"
-version: "0.1.0"
+version: "0.1.1"
 maintainer: "Dominik Bousquet <bousquet.dominik@gmail.com>"
 authors: [ "Dominik Bousquet" ]
 license: "MIT"

@@ -240,7 +240,7 @@ static uint8_t	*build_exportable_model_for_thread(
 
 			if (char_access_width == 4)
 				((uint32_t*)candidate_occurrences->occ_indexes)[candidate_occurrences->occ_indexes_len] = i_char;
-			if (char_access_width == 2)
+			else if (char_access_width == 2)
 				((uint16_t*)candidate_occurrences->occ_indexes)[candidate_occurrences->occ_indexes_len] = i_char;
 			else
 				((uint8_t*)candidate_occurrences->occ_indexes)[candidate_occurrences->occ_indexes_len] = i_char;
@@ -386,7 +386,7 @@ static uint8_t	*build_exportable_model_for_thread(
 			{
 				if (char_access_width == 4)
 					*((uint32_t*)occurrences_head) = ((uint32_t*)candidate_occurrences->occ_indexes)[i_occurrence];
-				if (char_access_width == 2)
+				else if (char_access_width == 2)
 					*((uint16_t*)occurrences_head) = ((uint16_t*)candidate_occurrences->occ_indexes)[i_occurrence];
 				else
 					*((uint8_t*)occurrences_head) = ((uint8_t*)candidate_occurrences->occ_indexes)[i_occurrence];

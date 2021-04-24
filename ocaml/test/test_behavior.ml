@@ -179,6 +179,24 @@ let tests = [
     ] in
     let res = run_jaro ~min_score:(Some 0.0) (Some 2) nb_runtime_threads candidates "hélloz" in
     assert (res = [("hélloz", 1.0) ; ("lolz", 0.75)])
+  )) ; ("long_candidate", fun nb_runtime_threads -> (
+    let long_candidate = String.make (256 * 128) 'b' in
+    let normal_candidate = String.make 11 'a' in
+    let candidates = [
+      (normal_candidate, None) ;
+      (long_candidate, None)
+    ] in
+    let res = run_jaro ~min_score:(Some 0.9) None nb_runtime_threads candidates normal_candidate in
+    assert (res = [(normal_candidate, 1.0)])
+  )) ; ("long_candidate2", fun nb_runtime_threads -> (
+    let long_candidate = String.make (256 * 128) 'b' in
+    let normal_candidate = String.make 11 'a' in
+    let candidates = [
+      (normal_candidate, None) ;
+      (long_candidate, None)
+    ] in
+    let res = run_jaro ~min_score:(Some 0.9) None nb_runtime_threads candidates long_candidate in
+    assert (res = [(long_candidate, 1.0)])
   ))
 ]
 

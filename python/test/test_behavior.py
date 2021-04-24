@@ -289,3 +289,25 @@ def test_n_best_results_respect_min_score3(as_bytes, nb_runtime_threads):
     ('hélloz', 1.0),
     ('lolz', 0.75)
   ]
+
+@pytest.mark.parametrize('as_bytes', as_bytes)
+@pytest.mark.parametrize('nb_runtime_threads', nb_runtime_threads)
+def test_long_candidate(as_bytes, nb_runtime_threads):
+  long_candidate = 'b' * (256 * 128)
+  normal_candidate = 'aaaaaaaaaaa'
+  candidates = [normal_candidate, long_candidate]
+  res = run_jaro(candidates, normal_candidate, as_bytes, nb_runtime_threads, min_score=0.9)
+  assert res == [
+    (normal_candidate, 1.0)
+  ]
+
+@pytest.mark.parametrize('as_bytes', as_bytes)
+@pytest.mark.parametrize('nb_runtime_threads', nb_runtime_threads)
+def test_long_candidate2(as_bytes, nb_runtime_threads):
+  long_candidate = 'b' * (256 * 128)
+  normal_candidate = 'aaaaaaaaaaa'
+  candidates = [normal_candidate, long_candidate]
+  res = run_jaro(candidates, long_candidate, as_bytes, nb_runtime_threads, min_score=0.9)
+  assert res == [
+    (long_candidate, 1.0)
+  ]

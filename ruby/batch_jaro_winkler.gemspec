@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
     'lib/batch_jaro_winkler/version.rb'
   ] + Dir['ext/batch_jaro_winkler/*', 'ext/batch_jaro_winkler/ext/*']
   s.require_paths = ['lib']
-  s.required_ruby_version = ">= 2.1.0"
+  s.required_ruby_version = '>= 2.1.0'
 
-  s.add_runtime_dependency 'ffi', '~> 1.12', '>= 1.12.2'
+  s.add_runtime_dependency 'ffi', '~> 1.12.0'
 end
