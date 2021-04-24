@@ -322,6 +322,26 @@ module TestBehavior
         ['lolz', 0.75]
       ]
     end
+
+    parametrized_test('long_candidate', args) do |as_bytes, nb_runtime_threads|
+      long_candidate = 'b' * (256 * 128)
+      normal_candidate = 'aaaaaaaaaaa'
+      candidates = [normal_candidate, long_candidate]
+      res = run_jaro(candidates, normal_candidate, as_bytes, nb_runtime_threads, min_score=0.9)
+      assert_equal res, [
+        [normal_candidate, 1.0]
+      ]
+    end
+
+    parametrized_test('long_candidate2', args) do |as_bytes, nb_runtime_threads|
+      long_candidate = 'b' * (256 * 128)
+      normal_candidate = 'aaaaaaaaaaa'
+      candidates = [normal_candidate, long_candidate]
+      res = run_jaro(candidates, long_candidate, as_bytes, nb_runtime_threads, min_score=0.9)
+      assert_equal res, [
+        [long_candidate, 1.0]
+      ]
+    end
   end
 end
 

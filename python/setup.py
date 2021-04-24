@@ -5,7 +5,7 @@ from distutils.extension import Extension
 
 setup(
   name='batch_jaro_winkler',
-  version='0.1.0',
+  version='0.1.1',
   description='Fast batch jaro winkler distance implementation in C99.',
   long_description='This project gets its performance from the pre-calculation of an optimized model in advance of the actual runtime calculations. Supports any encoding.',
   author='Dominik Bousquet',

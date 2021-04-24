@@ -42,14 +42,6 @@ matrix:
         - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
       script:
         - pytest -vv -s
-    - language: python
-      os: linux
-      python:
-        - "3.9"
-      install:
-        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
-      script:
-        - pytest -vv -s
 
     # Ruby
     - language: ruby
@@ -194,18 +186,6 @@ matrix:
         - sudo apt-get install -y valgrind
       python:
         - "3.8"
-      install:
-        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
-      script:
-        - "rm -Rf test_correctness.py && valgrind --log-fd=1 pytest -vv -s | grep 'definitely lost: 0 byte'"
-    - language: python
-      name: 'Memory leaks Python 3.9'
-      os: linux
-      before_install:
-        - sudo apt-get update
-        - sudo apt-get install -y valgrind
-      python:
-        - "3.9"
       install:
         - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
       script:
