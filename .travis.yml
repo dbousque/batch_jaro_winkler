@@ -1,6 +1,47 @@
 # Python 3.3 missing from Travis
 matrix:
   include:
+    # Python
+    - language: python
+      os: linux
+      python:
+        - "3.4"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
+    - language: python
+      os: linux
+      python:
+        - "3.5"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
+    - language: python
+      os: linux
+      python:
+        - "3.6"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
+    - language: python
+      os: linux
+      python:
+        - "3.7"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
+    - language: python
+      os: linux
+      python:
+        - "3.8"
+      install:
+        - cd python && pip install -r dev-requirements.txt && ./local_build.sh && cd test && pip install -r requirements.txt
+      script:
+        - pytest -vv -s
 
     # Ruby
     - language: ruby
