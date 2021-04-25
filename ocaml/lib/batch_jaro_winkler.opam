@@ -14,8 +14,8 @@ model in advance of the actual runtime calculations. Supports any encoding.
 """
 
 build: [
-  ["dune" "build" "-p" name "-j" jobs]
-  ["cp" "%{name}%.install" "."]
+  ["dune" "build" "-p" name "-j" jobs "--root=./ocaml/lib"]
+  ["cp" "ocaml/lib/%{name}%.install" "."]
 ]
 
 depends: [
