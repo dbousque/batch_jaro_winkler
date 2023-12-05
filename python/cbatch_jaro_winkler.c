@@ -4,7 +4,7 @@
 {
     "distutils": {
         "depends": [
-            "ext\\batch_jaro_winkler.h"
+            "ext/batch_jaro_winkler.h"
         ],
         "include_dirs": [
             "ext",
@@ -3192,7 +3192,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  *     while i_result < nb_results:
  *       cpy_size = c_results[i_result].candidate_length * char_width             # <<<<<<<<<<<<<<
  *       memcpy(tmp_all_candidates_head, c_results[i_result].candidate, cpy_size)
- *       tmp_all_candidates_head = <void*>(<char*>tmp_all_candidates_head + cpy_size)
+ *       tmp_all_candidates_head = <void*>(<stdint.uint8_t*>tmp_all_candidates_head + cpy_size)
  */
       __pyx_v_cpy_size = ((__pyx_v_c_results[__pyx_v_i_result]).candidate_length * __pyx_v_char_width);
 
@@ -3200,7 +3200,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  *     while i_result < nb_results:
  *       cpy_size = c_results[i_result].candidate_length * char_width
  *       memcpy(tmp_all_candidates_head, c_results[i_result].candidate, cpy_size)             # <<<<<<<<<<<<<<
- *       tmp_all_candidates_head = <void*>(<char*>tmp_all_candidates_head + cpy_size)
+ *       tmp_all_candidates_head = <void*>(<stdint.uint8_t*>tmp_all_candidates_head + cpy_size)
  *       i_result = i_result + 1
  */
       (void)(memcpy(__pyx_v_tmp_all_candidates_head, (__pyx_v_c_results[__pyx_v_i_result]).candidate, __pyx_v_cpy_size));
@@ -3208,15 +3208,15 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
       /* "batch_jaro_winkler.pyx":109
  *       cpy_size = c_results[i_result].candidate_length * char_width
  *       memcpy(tmp_all_candidates_head, c_results[i_result].candidate, cpy_size)
- *       tmp_all_candidates_head = <void*>(<char*>tmp_all_candidates_head + cpy_size)             # <<<<<<<<<<<<<<
+ *       tmp_all_candidates_head = <void*>(<stdint.uint8_t*>tmp_all_candidates_head + cpy_size)             # <<<<<<<<<<<<<<
  *       i_result = i_result + 1
  * 
  */
-      __pyx_v_tmp_all_candidates_head = ((void *)(((char *)__pyx_v_tmp_all_candidates_head) + __pyx_v_cpy_size));
+      __pyx_v_tmp_all_candidates_head = ((void *)(((uint8_t *)__pyx_v_tmp_all_candidates_head) + __pyx_v_cpy_size));
 
       /* "batch_jaro_winkler.pyx":110
  *       memcpy(tmp_all_candidates_head, c_results[i_result].candidate, cpy_size)
- *       tmp_all_candidates_head = <void*>(<char*>tmp_all_candidates_head + cpy_size)
+ *       tmp_all_candidates_head = <void*>(<stdint.uint8_t*>tmp_all_candidates_head + cpy_size)
  *       i_result = i_result + 1             # <<<<<<<<<<<<<<
  * 
  *     all_candidates_pybytes = PyBytes_FromStringAndSize(<char*> tmp_all_candidates, char_width * total_candidates_length)

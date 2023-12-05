@@ -106,7 +106,7 @@ cdef c_results_to_python(cbatch_jaro_winkler_headers.bjw_result *c_results, stdi
     while i_result < nb_results:
       cpy_size = c_results[i_result].candidate_length * char_width
       memcpy(tmp_all_candidates_head, c_results[i_result].candidate, cpy_size)
-      tmp_all_candidates_head = <void*>(<char*>tmp_all_candidates_head + cpy_size)
+      tmp_all_candidates_head = <void*>(<stdint.uint8_t*>tmp_all_candidates_head + cpy_size)
       i_result = i_result + 1
 
     all_candidates_pybytes = PyBytes_FromStringAndSize(<char*> tmp_all_candidates, char_width * total_candidates_length)

@@ -35,7 +35,7 @@ SOFTWARE.
 # include <math.h>
 
 # if BJW_USE_THREADS
-#  ifdef _WIN32
+#  if defined(_WIN32) || defined(_WIN64)
 #   include <windows.h>
 #  else
 #   include <pthread.h>
