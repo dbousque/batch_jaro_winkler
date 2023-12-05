@@ -4,14 +4,16 @@
 {
     "distutils": {
         "depends": [
-            "ext/batch_jaro_winkler.h"
+            "ext\\batch_jaro_winkler.h"
         ],
         "include_dirs": [
+            "ext",
             "."
         ],
         "name": "batch_jaro_winkler",
         "sources": [
-            "cbatch_jaro_winkler.pyx"
+            "cbatch_jaro_winkler.pyx",
+            "ext/batch_jaro_winkler.c"
         ]
     },
     "module_name": "batch_jaro_winkler"
@@ -992,7 +994,7 @@ static const char *__pyx_f[] = {
 /*--- Type declarations ---*/
 struct __pyx_obj_18batch_jaro_winkler_RuntimeModel;
 
-/* "batch_jaro_winkler.pyx":13
+/* "batch_jaro_winkler.pyx":14
  *   object PyBytes_FromStringAndSize(const char *v, Py_ssize_t len)
  * 
  * cdef class RuntimeModel:             # <<<<<<<<<<<<<<
@@ -1647,7 +1649,7 @@ static PyObject *__pyx_codeobj__23;
 static PyObject *__pyx_codeobj__25;
 /* Late includes */
 
-/* "batch_jaro_winkler.pyx":17
+/* "batch_jaro_winkler.pyx":18
  *   cdef void* model
  * 
  *   def __cinit__(self, exportable_model):             # <<<<<<<<<<<<<<
@@ -1684,7 +1686,7 @@ static int __pyx_pw_18batch_jaro_winkler_12RuntimeModel_1__cinit__(PyObject *__p
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 17, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__cinit__") < 0)) __PYX_ERR(0, 18, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
@@ -1695,7 +1697,7 @@ static int __pyx_pw_18batch_jaro_winkler_12RuntimeModel_1__cinit__(PyObject *__p
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 17, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__cinit__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 18, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("batch_jaro_winkler.RuntimeModel.__cinit__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1718,7 +1720,7 @@ static int __pyx_pf_18batch_jaro_winkler_12RuntimeModel___cinit__(struct __pyx_o
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
-  /* "batch_jaro_winkler.pyx":20
+  /* "batch_jaro_winkler.pyx":21
  *     # We keep a reference because we use the candidates strings in the runtime model and
  *     # so we must guarantee that the exportable model is not garbage collected before the runtime model.
  *     self.exportable_model = exportable_model             # <<<<<<<<<<<<<<
@@ -1731,7 +1733,7 @@ static int __pyx_pf_18batch_jaro_winkler_12RuntimeModel___cinit__(struct __pyx_o
   __Pyx_DECREF(__pyx_v_self->exportable_model);
   __pyx_v_self->exportable_model = __pyx_v_exportable_model;
 
-  /* "batch_jaro_winkler.pyx":21
+  /* "batch_jaro_winkler.pyx":22
  *     # so we must guarantee that the exportable model is not garbage collected before the runtime model.
  *     self.exportable_model = exportable_model
  *     self.model = cbatch_jaro_winkler_headers.bjw_build_runtime_model(PyBytes_AS_STRING(exportable_model))             # <<<<<<<<<<<<<<
@@ -1740,7 +1742,7 @@ static int __pyx_pf_18batch_jaro_winkler_12RuntimeModel___cinit__(struct __pyx_o
  */
   __pyx_v_self->model = bjw_build_runtime_model(PyBytes_AS_STRING(__pyx_v_exportable_model));
 
-  /* "batch_jaro_winkler.pyx":22
+  /* "batch_jaro_winkler.pyx":23
  *     self.exportable_model = exportable_model
  *     self.model = cbatch_jaro_winkler_headers.bjw_build_runtime_model(PyBytes_AS_STRING(exportable_model))
  *     if not self.model:             # <<<<<<<<<<<<<<
@@ -1750,20 +1752,20 @@ static int __pyx_pf_18batch_jaro_winkler_12RuntimeModel___cinit__(struct __pyx_o
   __pyx_t_1 = ((!(__pyx_v_self->model != 0)) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "batch_jaro_winkler.pyx":23
+    /* "batch_jaro_winkler.pyx":24
  *     self.model = cbatch_jaro_winkler_headers.bjw_build_runtime_model(PyBytes_AS_STRING(exportable_model))
  *     if not self.model:
  *       raise RuntimeError('batch_jaro_winkler.build_runtime_model failed')             # <<<<<<<<<<<<<<
  * 
  *   def __dealloc__(self):
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 23, __pyx_L1_error)
+    __PYX_ERR(0, 24, __pyx_L1_error)
 
-    /* "batch_jaro_winkler.pyx":22
+    /* "batch_jaro_winkler.pyx":23
  *     self.exportable_model = exportable_model
  *     self.model = cbatch_jaro_winkler_headers.bjw_build_runtime_model(PyBytes_AS_STRING(exportable_model))
  *     if not self.model:             # <<<<<<<<<<<<<<
@@ -1772,7 +1774,7 @@ static int __pyx_pf_18batch_jaro_winkler_12RuntimeModel___cinit__(struct __pyx_o
  */
   }
 
-  /* "batch_jaro_winkler.pyx":17
+  /* "batch_jaro_winkler.pyx":18
  *   cdef void* model
  * 
  *   def __cinit__(self, exportable_model):             # <<<<<<<<<<<<<<
@@ -1792,7 +1794,7 @@ static int __pyx_pf_18batch_jaro_winkler_12RuntimeModel___cinit__(struct __pyx_o
   return __pyx_r;
 }
 
-/* "batch_jaro_winkler.pyx":25
+/* "batch_jaro_winkler.pyx":26
  *       raise RuntimeError('batch_jaro_winkler.build_runtime_model failed')
  * 
  *   def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -1815,7 +1817,7 @@ static void __pyx_pf_18batch_jaro_winkler_12RuntimeModel_2__dealloc__(struct __p
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "batch_jaro_winkler.pyx":26
+  /* "batch_jaro_winkler.pyx":27
  * 
  *   def __dealloc__(self):
  *     cbatch_jaro_winkler_headers.bjw_free_runtime_model(self.model)             # <<<<<<<<<<<<<<
@@ -1824,7 +1826,7 @@ static void __pyx_pf_18batch_jaro_winkler_12RuntimeModel_2__dealloc__(struct __p
  */
   bjw_free_runtime_model(__pyx_v_self->model);
 
-  /* "batch_jaro_winkler.pyx":25
+  /* "batch_jaro_winkler.pyx":26
  *       raise RuntimeError('batch_jaro_winkler.build_runtime_model failed')
  * 
  *   def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -1949,7 +1951,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_12RuntimeModel_6__setstate_cython
   return __pyx_r;
 }
 
-/* "batch_jaro_winkler.pyx":31
+/* "batch_jaro_winkler.pyx":32
  * # - ['hi', 'hello']
  * # - [{ 'candidate': 'hi', 'min_score': 0.5 }, { 'candidate': 'hello', 'min_score': 0.8 }]
  * def build_exportable_model_bytes(char_width, candidates, nb_runtime_threads=1):             # <<<<<<<<<<<<<<
@@ -1996,7 +1998,7 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_1build_exportable_model_bytes(PyO
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_candidates)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("build_exportable_model_bytes", 0, 2, 3, 1); __PYX_ERR(0, 31, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("build_exportable_model_bytes", 0, 2, 3, 1); __PYX_ERR(0, 32, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -2006,7 +2008,7 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_1build_exportable_model_bytes(PyO
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "build_exportable_model_bytes") < 0)) __PYX_ERR(0, 31, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "build_exportable_model_bytes") < 0)) __PYX_ERR(0, 32, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -2024,7 +2026,7 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_1build_exportable_model_bytes(PyO
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("build_exportable_model_bytes", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 31, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("build_exportable_model_bytes", 0, 2, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 32, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("batch_jaro_winkler.build_exportable_model_bytes", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2078,32 +2080,32 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
   __Pyx_RefNannySetupContext("build_exportable_model_bytes", 0);
   __Pyx_INCREF(__pyx_v_char_width);
 
-  /* "batch_jaro_winkler.pyx":32
+  /* "batch_jaro_winkler.pyx":33
  * # - [{ 'candidate': 'hi', 'min_score': 0.5 }, { 'candidate': 'hello', 'min_score': 0.8 }]
  * def build_exportable_model_bytes(char_width, candidates, nb_runtime_threads=1):
  *   if nb_runtime_threads < 1:             # <<<<<<<<<<<<<<
  *     raise ValueError('nb_runtime_threads must be > 0')
  *   candidates_encoded = char_width != 0
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_nb_runtime_threads, __pyx_int_1, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_nb_runtime_threads, __pyx_int_1, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (unlikely(__pyx_t_2)) {
 
-    /* "batch_jaro_winkler.pyx":33
+    /* "batch_jaro_winkler.pyx":34
  * def build_exportable_model_bytes(char_width, candidates, nb_runtime_threads=1):
  *   if nb_runtime_threads < 1:
  *     raise ValueError('nb_runtime_threads must be > 0')             # <<<<<<<<<<<<<<
  *   candidates_encoded = char_width != 0
  *   if not candidates_encoded:
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 33, __pyx_L1_error)
+    __PYX_ERR(0, 34, __pyx_L1_error)
 
-    /* "batch_jaro_winkler.pyx":32
+    /* "batch_jaro_winkler.pyx":33
  * # - [{ 'candidate': 'hi', 'min_score': 0.5 }, { 'candidate': 'hello', 'min_score': 0.8 }]
  * def build_exportable_model_bytes(char_width, candidates, nb_runtime_threads=1):
  *   if nb_runtime_threads < 1:             # <<<<<<<<<<<<<<
@@ -2112,30 +2114,30 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":34
+  /* "batch_jaro_winkler.pyx":35
  *   if nb_runtime_threads < 1:
  *     raise ValueError('nb_runtime_threads must be > 0')
  *   candidates_encoded = char_width != 0             # <<<<<<<<<<<<<<
  *   if not candidates_encoded:
  *     char_width = 4
  */
-  __pyx_t_1 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_candidates_encoded = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "batch_jaro_winkler.pyx":35
+  /* "batch_jaro_winkler.pyx":36
  *     raise ValueError('nb_runtime_threads must be > 0')
  *   candidates_encoded = char_width != 0
  *   if not candidates_encoded:             # <<<<<<<<<<<<<<
  *     char_width = 4
  *   if char_width != 1 and char_width != 2 and char_width != 4:
  */
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_candidates_encoded); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_candidates_encoded); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 36, __pyx_L1_error)
   __pyx_t_3 = ((!__pyx_t_2) != 0);
   if (__pyx_t_3) {
 
-    /* "batch_jaro_winkler.pyx":36
+    /* "batch_jaro_winkler.pyx":37
  *   candidates_encoded = char_width != 0
  *   if not candidates_encoded:
  *     char_width = 4             # <<<<<<<<<<<<<<
@@ -2145,7 +2147,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
     __Pyx_INCREF(__pyx_int_4);
     __Pyx_DECREF_SET(__pyx_v_char_width, __pyx_int_4);
 
-    /* "batch_jaro_winkler.pyx":35
+    /* "batch_jaro_winkler.pyx":36
  *     raise ValueError('nb_runtime_threads must be > 0')
  *   candidates_encoded = char_width != 0
  *   if not candidates_encoded:             # <<<<<<<<<<<<<<
@@ -2154,53 +2156,53 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":37
+  /* "batch_jaro_winkler.pyx":38
  *   if not candidates_encoded:
  *     char_width = 4
  *   if char_width != 1 and char_width != 2 and char_width != 4:             # <<<<<<<<<<<<<<
  *     raise ValueError('char_width must be 1, 2 or 4')
  *   nb_candidates = len(candidates)
  */
-  __pyx_t_1 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
   } else {
     __pyx_t_3 = __pyx_t_2;
     goto __pyx_L6_bool_binop_done;
   }
-  __pyx_t_1 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
   } else {
     __pyx_t_3 = __pyx_t_2;
     goto __pyx_L6_bool_binop_done;
   }
-  __pyx_t_1 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_4, 4, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_4, 4, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = __pyx_t_2;
   __pyx_L6_bool_binop_done:;
   if (unlikely(__pyx_t_3)) {
 
-    /* "batch_jaro_winkler.pyx":38
+    /* "batch_jaro_winkler.pyx":39
  *     char_width = 4
  *   if char_width != 1 and char_width != 2 and char_width != 4:
  *     raise ValueError('char_width must be 1, 2 or 4')             # <<<<<<<<<<<<<<
  *   nb_candidates = len(candidates)
  *   with_min_scores = False
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 38, __pyx_L1_error)
+    __PYX_ERR(0, 39, __pyx_L1_error)
 
-    /* "batch_jaro_winkler.pyx":37
+    /* "batch_jaro_winkler.pyx":38
  *   if not candidates_encoded:
  *     char_width = 4
  *   if char_width != 1 and char_width != 2 and char_width != 4:             # <<<<<<<<<<<<<<
@@ -2209,20 +2211,20 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":39
+  /* "batch_jaro_winkler.pyx":40
  *   if char_width != 1 and char_width != 2 and char_width != 4:
  *     raise ValueError('char_width must be 1, 2 or 4')
  *   nb_candidates = len(candidates)             # <<<<<<<<<<<<<<
  *   with_min_scores = False
  *   if nb_candidates > 0 and (type(candidates[0]) is not bytes and getattr(candidates[0], '__getitem__')) and 'min_score' in candidates[0]:
  */
-  __pyx_t_4 = PyObject_Length(__pyx_v_candidates); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 39, __pyx_L1_error)
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_4 = PyObject_Length(__pyx_v_candidates); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_nb_candidates = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "batch_jaro_winkler.pyx":40
+  /* "batch_jaro_winkler.pyx":41
  *     raise ValueError('char_width must be 1, 2 or 4')
  *   nb_candidates = len(candidates)
  *   with_min_scores = False             # <<<<<<<<<<<<<<
@@ -2231,22 +2233,22 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
   __pyx_v_with_min_scores = 0;
 
-  /* "batch_jaro_winkler.pyx":41
+  /* "batch_jaro_winkler.pyx":42
  *   nb_candidates = len(candidates)
  *   with_min_scores = False
  *   if nb_candidates > 0 and (type(candidates[0]) is not bytes and getattr(candidates[0], '__getitem__')) and 'min_score' in candidates[0]:             # <<<<<<<<<<<<<<
  *     with_min_scores = True
  *   c_candidates = <void**> malloc(sizeof(void*) * nb_candidates)
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_nb_candidates, __pyx_int_0, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_nb_candidates, __pyx_int_0, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
   } else {
     __pyx_t_3 = __pyx_t_2;
     goto __pyx_L10_bool_binop_done;
   }
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_candidates, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_candidates, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = (((PyObject *)Py_TYPE(__pyx_t_1)) != ((PyObject *)(&PyBytes_Type)));
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -2256,28 +2258,28 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
     __pyx_t_3 = __pyx_t_5;
     goto __pyx_L10_bool_binop_done;
   }
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_candidates, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_candidates, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_GetAttr(__pyx_t_1, __pyx_n_u_getitem); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_GetAttr(__pyx_t_1, __pyx_n_u_getitem); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   if (__pyx_t_5) {
   } else {
     __pyx_t_3 = __pyx_t_5;
     goto __pyx_L10_bool_binop_done;
   }
-  __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_candidates, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_candidates, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_n_u_min_score, __pyx_t_6, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_5 = (__Pyx_PySequence_ContainsTF(__pyx_n_u_min_score, __pyx_t_6, Py_EQ)); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_2 = (__pyx_t_5 != 0);
   __pyx_t_3 = __pyx_t_2;
   __pyx_L10_bool_binop_done:;
   if (__pyx_t_3) {
 
-    /* "batch_jaro_winkler.pyx":42
+    /* "batch_jaro_winkler.pyx":43
  *   with_min_scores = False
  *   if nb_candidates > 0 and (type(candidates[0]) is not bytes and getattr(candidates[0], '__getitem__')) and 'min_score' in candidates[0]:
  *     with_min_scores = True             # <<<<<<<<<<<<<<
@@ -2286,7 +2288,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
     __pyx_v_with_min_scores = 1;
 
-    /* "batch_jaro_winkler.pyx":41
+    /* "batch_jaro_winkler.pyx":42
  *   nb_candidates = len(candidates)
  *   with_min_scores = False
  *   if nb_candidates > 0 and (type(candidates[0]) is not bytes and getattr(candidates[0], '__getitem__')) and 'min_score' in candidates[0]:             # <<<<<<<<<<<<<<
@@ -2295,51 +2297,51 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":43
+  /* "batch_jaro_winkler.pyx":44
  *   if nb_candidates > 0 and (type(candidates[0]) is not bytes and getattr(candidates[0], '__getitem__')) and 'min_score' in candidates[0]:
  *     with_min_scores = True
  *   c_candidates = <void**> malloc(sizeof(void*) * nb_candidates)             # <<<<<<<<<<<<<<
  *   c_candidates_lengths = <stdint.uint32_t*> malloc(sizeof(stdint.uint32_t) * nb_candidates)
  *   # Keep in python list also to guarantee that encoded strings are not garbage collected.
  */
-  __pyx_t_6 = __Pyx_PyInt_FromSize_t((sizeof(void *))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_FromSize_t((sizeof(void *))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_1 = PyNumber_Multiply(__pyx_t_6, __pyx_v_nb_candidates); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_t_6, __pyx_v_nb_candidates); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_7 = __Pyx_PyInt_As_size_t(__pyx_t_1); if (unlikely((__pyx_t_7 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyInt_As_size_t(__pyx_t_1); if (unlikely((__pyx_t_7 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_c_candidates = ((void **)malloc(__pyx_t_7));
 
-  /* "batch_jaro_winkler.pyx":44
+  /* "batch_jaro_winkler.pyx":45
  *     with_min_scores = True
  *   c_candidates = <void**> malloc(sizeof(void*) * nb_candidates)
  *   c_candidates_lengths = <stdint.uint32_t*> malloc(sizeof(stdint.uint32_t) * nb_candidates)             # <<<<<<<<<<<<<<
  *   # Keep in python list also to guarantee that encoded strings are not garbage collected.
  *   _stored_candidates = []
  */
-  __pyx_t_1 = __Pyx_PyInt_FromSize_t((sizeof(uint32_t))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_FromSize_t((sizeof(uint32_t))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, __pyx_v_nb_candidates); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, __pyx_v_nb_candidates); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_7 = __Pyx_PyInt_As_size_t(__pyx_t_6); if (unlikely((__pyx_t_7 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyInt_As_size_t(__pyx_t_6); if (unlikely((__pyx_t_7 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_c_candidates_lengths = ((uint32_t *)malloc(__pyx_t_7));
 
-  /* "batch_jaro_winkler.pyx":46
+  /* "batch_jaro_winkler.pyx":47
  *   c_candidates_lengths = <stdint.uint32_t*> malloc(sizeof(stdint.uint32_t) * nb_candidates)
  *   # Keep in python list also to guarantee that encoded strings are not garbage collected.
  *   _stored_candidates = []             # <<<<<<<<<<<<<<
  *   c_min_scores = <float*> malloc(sizeof(float) * nb_candidates) if with_min_scores else NULL
  *   for i_cand, cand in enumerate(candidates):
  */
-  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_v__stored_candidates = ((PyObject*)__pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "batch_jaro_winkler.pyx":47
+  /* "batch_jaro_winkler.pyx":48
  *   # Keep in python list also to guarantee that encoded strings are not garbage collected.
  *   _stored_candidates = []
  *   c_min_scores = <float*> malloc(sizeof(float) * nb_candidates) if with_min_scores else NULL             # <<<<<<<<<<<<<<
@@ -2347,12 +2349,12 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  *     cand_string = cand
  */
   if ((__pyx_v_with_min_scores != 0)) {
-    __pyx_t_6 = __Pyx_PyInt_FromSize_t((sizeof(float))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 47, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyInt_FromSize_t((sizeof(float))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 48, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_1 = PyNumber_Multiply(__pyx_t_6, __pyx_v_nb_candidates); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Multiply(__pyx_t_6, __pyx_v_nb_candidates); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_7 = __Pyx_PyInt_As_size_t(__pyx_t_1); if (unlikely((__pyx_t_7 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 47, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyInt_As_size_t(__pyx_t_1); if (unlikely((__pyx_t_7 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_8 = ((float *)malloc(__pyx_t_7));
   } else {
@@ -2360,7 +2362,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
   }
   __pyx_v_c_min_scores = __pyx_t_8;
 
-  /* "batch_jaro_winkler.pyx":48
+  /* "batch_jaro_winkler.pyx":49
  *   _stored_candidates = []
  *   c_min_scores = <float*> malloc(sizeof(float) * nb_candidates) if with_min_scores else NULL
  *   for i_cand, cand in enumerate(candidates):             # <<<<<<<<<<<<<<
@@ -2373,26 +2375,26 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
     __pyx_t_6 = __pyx_v_candidates; __Pyx_INCREF(__pyx_t_6); __pyx_t_4 = 0;
     __pyx_t_9 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_v_candidates); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_v_candidates); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 49, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_9 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __pyx_t_9 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 49, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_9)) {
       if (likely(PyList_CheckExact(__pyx_t_6))) {
         if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_6)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_10 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_4); __Pyx_INCREF(__pyx_t_10); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 48, __pyx_L1_error)
+        __pyx_t_10 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_4); __Pyx_INCREF(__pyx_t_10); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 49, __pyx_L1_error)
         #else
-        __pyx_t_10 = PySequence_ITEM(__pyx_t_6, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 48, __pyx_L1_error)
+        __pyx_t_10 = PySequence_ITEM(__pyx_t_6, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 49, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         #endif
       } else {
         if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_10 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_4); __Pyx_INCREF(__pyx_t_10); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 48, __pyx_L1_error)
+        __pyx_t_10 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_4); __Pyx_INCREF(__pyx_t_10); __pyx_t_4++; if (unlikely(0 < 0)) __PYX_ERR(0, 49, __pyx_L1_error)
         #else
-        __pyx_t_10 = PySequence_ITEM(__pyx_t_6, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 48, __pyx_L1_error)
+        __pyx_t_10 = PySequence_ITEM(__pyx_t_6, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 49, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         #endif
       }
@@ -2402,7 +2404,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 48, __pyx_L1_error)
+          else __PYX_ERR(0, 49, __pyx_L1_error)
         }
         break;
       }
@@ -2412,13 +2414,13 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
     __pyx_t_10 = 0;
     __Pyx_INCREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_i_cand, __pyx_t_1);
-    __pyx_t_10 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyInt_AddObjC(__pyx_t_1, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 49, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_1);
     __pyx_t_1 = __pyx_t_10;
     __pyx_t_10 = 0;
 
-    /* "batch_jaro_winkler.pyx":49
+    /* "batch_jaro_winkler.pyx":50
  *   c_min_scores = <float*> malloc(sizeof(float) * nb_candidates) if with_min_scores else NULL
  *   for i_cand, cand in enumerate(candidates):
  *     cand_string = cand             # <<<<<<<<<<<<<<
@@ -2428,7 +2430,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
     __Pyx_INCREF(__pyx_v_cand);
     __Pyx_XDECREF_SET(__pyx_v_cand_string, __pyx_v_cand);
 
-    /* "batch_jaro_winkler.pyx":50
+    /* "batch_jaro_winkler.pyx":51
  *   for i_cand, cand in enumerate(candidates):
  *     cand_string = cand
  *     if with_min_scores:             # <<<<<<<<<<<<<<
@@ -2438,60 +2440,60 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
     __pyx_t_3 = (__pyx_v_with_min_scores != 0);
     if (__pyx_t_3) {
 
-      /* "batch_jaro_winkler.pyx":51
+      /* "batch_jaro_winkler.pyx":52
  *     cand_string = cand
  *     if with_min_scores:
  *       cand_string = cand['candidate']             # <<<<<<<<<<<<<<
  *       if cand['min_score'] < 0.0 or cand['min_score'] > 1.0:
  *         raise ValueError('min_score must be >= 0.0 and <= 1.0')
  */
-      __pyx_t_10 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cand, __pyx_n_u_candidate); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 51, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cand, __pyx_n_u_candidate); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 52, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF_SET(__pyx_v_cand_string, __pyx_t_10);
       __pyx_t_10 = 0;
 
-      /* "batch_jaro_winkler.pyx":52
+      /* "batch_jaro_winkler.pyx":53
  *     if with_min_scores:
  *       cand_string = cand['candidate']
  *       if cand['min_score'] < 0.0 or cand['min_score'] > 1.0:             # <<<<<<<<<<<<<<
  *         raise ValueError('min_score must be >= 0.0 and <= 1.0')
  *       c_min_scores[i_cand] = cand['min_score']
  */
-      __pyx_t_10 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cand, __pyx_n_u_min_score); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 52, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cand, __pyx_n_u_min_score); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 53, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_11 = PyObject_RichCompare(__pyx_t_10, __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_11); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 52, __pyx_L1_error)
+      __pyx_t_11 = PyObject_RichCompare(__pyx_t_10, __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_11); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 53, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_11); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 52, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_11); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 53, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       if (!__pyx_t_2) {
       } else {
         __pyx_t_3 = __pyx_t_2;
         goto __pyx_L18_bool_binop_done;
       }
-      __pyx_t_11 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cand, __pyx_n_u_min_score); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 52, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cand, __pyx_n_u_min_score); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 53, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
-      __pyx_t_10 = PyObject_RichCompare(__pyx_t_11, __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_10); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 52, __pyx_L1_error)
+      __pyx_t_10 = PyObject_RichCompare(__pyx_t_11, __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_10); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 53, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_10); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 52, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_10); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 53, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __pyx_t_3 = __pyx_t_2;
       __pyx_L18_bool_binop_done:;
       if (unlikely(__pyx_t_3)) {
 
-        /* "batch_jaro_winkler.pyx":53
+        /* "batch_jaro_winkler.pyx":54
  *       cand_string = cand['candidate']
  *       if cand['min_score'] < 0.0 or cand['min_score'] > 1.0:
  *         raise ValueError('min_score must be >= 0.0 and <= 1.0')             # <<<<<<<<<<<<<<
  *       c_min_scores[i_cand] = cand['min_score']
  *     if not candidates_encoded:
  */
-        __pyx_t_10 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 53, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 54, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_Raise(__pyx_t_10, 0, 0, 0);
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __PYX_ERR(0, 53, __pyx_L1_error)
+        __PYX_ERR(0, 54, __pyx_L1_error)
 
-        /* "batch_jaro_winkler.pyx":52
+        /* "batch_jaro_winkler.pyx":53
  *     if with_min_scores:
  *       cand_string = cand['candidate']
  *       if cand['min_score'] < 0.0 or cand['min_score'] > 1.0:             # <<<<<<<<<<<<<<
@@ -2500,21 +2502,21 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
       }
 
-      /* "batch_jaro_winkler.pyx":54
+      /* "batch_jaro_winkler.pyx":55
  *       if cand['min_score'] < 0.0 or cand['min_score'] > 1.0:
  *         raise ValueError('min_score must be >= 0.0 and <= 1.0')
  *       c_min_scores[i_cand] = cand['min_score']             # <<<<<<<<<<<<<<
  *     if not candidates_encoded:
  *       cand_string = cand_string.encode('utf-32-le')
  */
-      __pyx_t_10 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cand, __pyx_n_u_min_score); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 54, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_Dict_GetItem(__pyx_v_cand, __pyx_n_u_min_score); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 55, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_12 = __pyx_PyFloat_AsFloat(__pyx_t_10); if (unlikely((__pyx_t_12 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 54, __pyx_L1_error)
+      __pyx_t_12 = __pyx_PyFloat_AsFloat(__pyx_t_10); if (unlikely((__pyx_t_12 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 55, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __pyx_t_13 = __Pyx_PyIndex_AsSsize_t(__pyx_v_i_cand); if (unlikely((__pyx_t_13 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 54, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyIndex_AsSsize_t(__pyx_v_i_cand); if (unlikely((__pyx_t_13 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 55, __pyx_L1_error)
       (__pyx_v_c_min_scores[__pyx_t_13]) = __pyx_t_12;
 
-      /* "batch_jaro_winkler.pyx":50
+      /* "batch_jaro_winkler.pyx":51
  *   for i_cand, cand in enumerate(candidates):
  *     cand_string = cand
  *     if with_min_scores:             # <<<<<<<<<<<<<<
@@ -2523,25 +2525,25 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
     }
 
-    /* "batch_jaro_winkler.pyx":55
+    /* "batch_jaro_winkler.pyx":56
  *         raise ValueError('min_score must be >= 0.0 and <= 1.0')
  *       c_min_scores[i_cand] = cand['min_score']
  *     if not candidates_encoded:             # <<<<<<<<<<<<<<
  *       cand_string = cand_string.encode('utf-32-le')
  *     _stored_candidates.append(cand_string)
  */
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_candidates_encoded); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_candidates_encoded); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 56, __pyx_L1_error)
     __pyx_t_2 = ((!__pyx_t_3) != 0);
     if (__pyx_t_2) {
 
-      /* "batch_jaro_winkler.pyx":56
+      /* "batch_jaro_winkler.pyx":57
  *       c_min_scores[i_cand] = cand['min_score']
  *     if not candidates_encoded:
  *       cand_string = cand_string.encode('utf-32-le')             # <<<<<<<<<<<<<<
  *     _stored_candidates.append(cand_string)
  *     c_candidates[i_cand] = <void*> PyBytes_AS_STRING(cand_string)
  */
-      __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_v_cand_string, __pyx_n_s_encode); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 56, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_v_cand_string, __pyx_n_s_encode); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 57, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
       __pyx_t_14 = NULL;
       if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_11))) {
@@ -2555,13 +2557,13 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
       }
       __pyx_t_10 = (__pyx_t_14) ? __Pyx_PyObject_Call2Args(__pyx_t_11, __pyx_t_14, __pyx_kp_u_utf_32_le) : __Pyx_PyObject_CallOneArg(__pyx_t_11, __pyx_kp_u_utf_32_le);
       __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
-      if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 56, __pyx_L1_error)
+      if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 57, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       __Pyx_DECREF_SET(__pyx_v_cand_string, __pyx_t_10);
       __pyx_t_10 = 0;
 
-      /* "batch_jaro_winkler.pyx":55
+      /* "batch_jaro_winkler.pyx":56
  *         raise ValueError('min_score must be >= 0.0 and <= 1.0')
  *       c_min_scores[i_cand] = cand['min_score']
  *     if not candidates_encoded:             # <<<<<<<<<<<<<<
@@ -2570,55 +2572,55 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
     }
 
-    /* "batch_jaro_winkler.pyx":57
+    /* "batch_jaro_winkler.pyx":58
  *     if not candidates_encoded:
  *       cand_string = cand_string.encode('utf-32-le')
  *     _stored_candidates.append(cand_string)             # <<<<<<<<<<<<<<
  *     c_candidates[i_cand] = <void*> PyBytes_AS_STRING(cand_string)
  *     c_candidates_lengths[i_cand] = len(cand_string)
  */
-    __pyx_t_15 = __Pyx_PyList_Append(__pyx_v__stored_candidates, __pyx_v_cand_string); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 57, __pyx_L1_error)
+    __pyx_t_15 = __Pyx_PyList_Append(__pyx_v__stored_candidates, __pyx_v_cand_string); if (unlikely(__pyx_t_15 == ((int)-1))) __PYX_ERR(0, 58, __pyx_L1_error)
 
-    /* "batch_jaro_winkler.pyx":58
+    /* "batch_jaro_winkler.pyx":59
  *       cand_string = cand_string.encode('utf-32-le')
  *     _stored_candidates.append(cand_string)
  *     c_candidates[i_cand] = <void*> PyBytes_AS_STRING(cand_string)             # <<<<<<<<<<<<<<
  *     c_candidates_lengths[i_cand] = len(cand_string)
  *     c_candidates_lengths[i_cand] = <stdint.uint32_t> (c_candidates_lengths[i_cand] // char_width)
  */
-    __pyx_t_13 = __Pyx_PyIndex_AsSsize_t(__pyx_v_i_cand); if (unlikely((__pyx_t_13 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyIndex_AsSsize_t(__pyx_v_i_cand); if (unlikely((__pyx_t_13 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 59, __pyx_L1_error)
     (__pyx_v_c_candidates[__pyx_t_13]) = ((void *)PyBytes_AS_STRING(__pyx_v_cand_string));
 
-    /* "batch_jaro_winkler.pyx":59
+    /* "batch_jaro_winkler.pyx":60
  *     _stored_candidates.append(cand_string)
  *     c_candidates[i_cand] = <void*> PyBytes_AS_STRING(cand_string)
  *     c_candidates_lengths[i_cand] = len(cand_string)             # <<<<<<<<<<<<<<
  *     c_candidates_lengths[i_cand] = <stdint.uint32_t> (c_candidates_lengths[i_cand] // char_width)
  * 
  */
-    __pyx_t_13 = PyObject_Length(__pyx_v_cand_string); if (unlikely(__pyx_t_13 == ((Py_ssize_t)-1))) __PYX_ERR(0, 59, __pyx_L1_error)
-    __pyx_t_16 = __Pyx_PyIndex_AsSsize_t(__pyx_v_i_cand); if (unlikely((__pyx_t_16 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 59, __pyx_L1_error)
+    __pyx_t_13 = PyObject_Length(__pyx_v_cand_string); if (unlikely(__pyx_t_13 == ((Py_ssize_t)-1))) __PYX_ERR(0, 60, __pyx_L1_error)
+    __pyx_t_16 = __Pyx_PyIndex_AsSsize_t(__pyx_v_i_cand); if (unlikely((__pyx_t_16 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 60, __pyx_L1_error)
     (__pyx_v_c_candidates_lengths[__pyx_t_16]) = __pyx_t_13;
 
-    /* "batch_jaro_winkler.pyx":60
+    /* "batch_jaro_winkler.pyx":61
  *     c_candidates[i_cand] = <void*> PyBytes_AS_STRING(cand_string)
  *     c_candidates_lengths[i_cand] = len(cand_string)
  *     c_candidates_lengths[i_cand] = <stdint.uint32_t> (c_candidates_lengths[i_cand] // char_width)             # <<<<<<<<<<<<<<
  * 
  *   cdef stdint.uint32_t exportable_model_size = 0
  */
-    __pyx_t_13 = __Pyx_PyIndex_AsSsize_t(__pyx_v_i_cand); if (unlikely((__pyx_t_13 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 60, __pyx_L1_error)
-    __pyx_t_10 = __Pyx_PyInt_From_uint32_t((__pyx_v_c_candidates_lengths[__pyx_t_13])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyIndex_AsSsize_t(__pyx_v_i_cand); if (unlikely((__pyx_t_13 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 61, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyInt_From_uint32_t((__pyx_v_c_candidates_lengths[__pyx_t_13])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_11 = PyNumber_FloorDivide(__pyx_t_10, __pyx_v_char_width); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __pyx_t_11 = PyNumber_FloorDivide(__pyx_t_10, __pyx_v_char_width); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    __pyx_t_17 = __Pyx_PyInt_As_uint32_t(__pyx_t_11); if (unlikely((__pyx_t_17 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 60, __pyx_L1_error)
+    __pyx_t_17 = __Pyx_PyInt_As_uint32_t(__pyx_t_11); if (unlikely((__pyx_t_17 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    __pyx_t_13 = __Pyx_PyIndex_AsSsize_t(__pyx_v_i_cand); if (unlikely((__pyx_t_13 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 60, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyIndex_AsSsize_t(__pyx_v_i_cand); if (unlikely((__pyx_t_13 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 61, __pyx_L1_error)
     (__pyx_v_c_candidates_lengths[__pyx_t_13]) = ((uint32_t)__pyx_t_17);
 
-    /* "batch_jaro_winkler.pyx":48
+    /* "batch_jaro_winkler.pyx":49
  *   _stored_candidates = []
  *   c_min_scores = <float*> malloc(sizeof(float) * nb_candidates) if with_min_scores else NULL
  *   for i_cand, cand in enumerate(candidates):             # <<<<<<<<<<<<<<
@@ -2629,7 +2631,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "batch_jaro_winkler.pyx":62
+  /* "batch_jaro_winkler.pyx":63
  *     c_candidates_lengths[i_cand] = <stdint.uint32_t> (c_candidates_lengths[i_cand] // char_width)
  * 
  *   cdef stdint.uint32_t exportable_model_size = 0             # <<<<<<<<<<<<<<
@@ -2638,19 +2640,19 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
   __pyx_v_exportable_model_size = 0;
 
-  /* "batch_jaro_winkler.pyx":63
+  /* "batch_jaro_winkler.pyx":64
  * 
  *   cdef stdint.uint32_t exportable_model_size = 0
  *   exportable_model = cbatch_jaro_winkler_headers.bjw_build_exportable_model(c_candidates, char_width, c_candidates_lengths, nb_candidates, c_min_scores, nb_runtime_threads, &exportable_model_size)             # <<<<<<<<<<<<<<
  *   if not exportable_model:
  *     free(c_candidates)
  */
-  __pyx_t_17 = __Pyx_PyInt_As_uint32_t(__pyx_v_char_width); if (unlikely((__pyx_t_17 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 63, __pyx_L1_error)
-  __pyx_t_18 = __Pyx_PyInt_As_uint32_t(__pyx_v_nb_candidates); if (unlikely((__pyx_t_18 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 63, __pyx_L1_error)
-  __pyx_t_19 = __Pyx_PyInt_As_uint32_t(__pyx_v_nb_runtime_threads); if (unlikely((__pyx_t_19 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_17 = __Pyx_PyInt_As_uint32_t(__pyx_v_char_width); if (unlikely((__pyx_t_17 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_18 = __Pyx_PyInt_As_uint32_t(__pyx_v_nb_candidates); if (unlikely((__pyx_t_18 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_19 = __Pyx_PyInt_As_uint32_t(__pyx_v_nb_runtime_threads); if (unlikely((__pyx_t_19 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 64, __pyx_L1_error)
   __pyx_v_exportable_model = bjw_build_exportable_model(__pyx_v_c_candidates, __pyx_t_17, __pyx_v_c_candidates_lengths, __pyx_t_18, __pyx_v_c_min_scores, __pyx_t_19, (&__pyx_v_exportable_model_size));
 
-  /* "batch_jaro_winkler.pyx":64
+  /* "batch_jaro_winkler.pyx":65
  *   cdef stdint.uint32_t exportable_model_size = 0
  *   exportable_model = cbatch_jaro_winkler_headers.bjw_build_exportable_model(c_candidates, char_width, c_candidates_lengths, nb_candidates, c_min_scores, nb_runtime_threads, &exportable_model_size)
  *   if not exportable_model:             # <<<<<<<<<<<<<<
@@ -2660,7 +2662,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
   __pyx_t_2 = ((!(__pyx_v_exportable_model != 0)) != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "batch_jaro_winkler.pyx":65
+    /* "batch_jaro_winkler.pyx":66
  *   exportable_model = cbatch_jaro_winkler_headers.bjw_build_exportable_model(c_candidates, char_width, c_candidates_lengths, nb_candidates, c_min_scores, nb_runtime_threads, &exportable_model_size)
  *   if not exportable_model:
  *     free(c_candidates)             # <<<<<<<<<<<<<<
@@ -2669,7 +2671,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
     free(__pyx_v_c_candidates);
 
-    /* "batch_jaro_winkler.pyx":66
+    /* "batch_jaro_winkler.pyx":67
  *   if not exportable_model:
  *     free(c_candidates)
  *     free(c_candidates_lengths)             # <<<<<<<<<<<<<<
@@ -2678,7 +2680,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
     free(__pyx_v_c_candidates_lengths);
 
-    /* "batch_jaro_winkler.pyx":67
+    /* "batch_jaro_winkler.pyx":68
  *     free(c_candidates)
  *     free(c_candidates_lengths)
  *     free(c_min_scores)             # <<<<<<<<<<<<<<
@@ -2687,20 +2689,20 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
     free(__pyx_v_c_min_scores);
 
-    /* "batch_jaro_winkler.pyx":68
+    /* "batch_jaro_winkler.pyx":69
  *     free(c_candidates_lengths)
  *     free(c_min_scores)
  *     raise RuntimeError('batch_jaro_winkler.build_exportable_model failed')             # <<<<<<<<<<<<<<
  *   # Makes a copy, would be better to directly use the buffer returned by the C function.
  *   cdef bytes res_exportable_model = (<stdint.uint8_t*> exportable_model)[:exportable_model_size]
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 68, __pyx_L1_error)
+    __PYX_ERR(0, 69, __pyx_L1_error)
 
-    /* "batch_jaro_winkler.pyx":64
+    /* "batch_jaro_winkler.pyx":65
  *   cdef stdint.uint32_t exportable_model_size = 0
  *   exportable_model = cbatch_jaro_winkler_headers.bjw_build_exportable_model(c_candidates, char_width, c_candidates_lengths, nb_candidates, c_min_scores, nb_runtime_threads, &exportable_model_size)
  *   if not exportable_model:             # <<<<<<<<<<<<<<
@@ -2709,19 +2711,19 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":70
+  /* "batch_jaro_winkler.pyx":71
  *     raise RuntimeError('batch_jaro_winkler.build_exportable_model failed')
  *   # Makes a copy, would be better to directly use the buffer returned by the C function.
  *   cdef bytes res_exportable_model = (<stdint.uint8_t*> exportable_model)[:exportable_model_size]             # <<<<<<<<<<<<<<
  *   # Since we made a copy, we can free the buffer.
  *   free(exportable_model)
  */
-  __pyx_t_1 = __Pyx_PyBytes_FromStringAndSize(((const char*)((uint8_t *)__pyx_v_exportable_model)) + 0, __pyx_v_exportable_model_size - 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBytes_FromStringAndSize(((const char*)((uint8_t *)__pyx_v_exportable_model)) + 0, __pyx_v_exportable_model_size - 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_res_exportable_model = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "batch_jaro_winkler.pyx":72
+  /* "batch_jaro_winkler.pyx":73
  *   cdef bytes res_exportable_model = (<stdint.uint8_t*> exportable_model)[:exportable_model_size]
  *   # Since we made a copy, we can free the buffer.
  *   free(exportable_model)             # <<<<<<<<<<<<<<
@@ -2730,7 +2732,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
   free(__pyx_v_exportable_model);
 
-  /* "batch_jaro_winkler.pyx":73
+  /* "batch_jaro_winkler.pyx":74
  *   # Since we made a copy, we can free the buffer.
  *   free(exportable_model)
  *   free(c_candidates)             # <<<<<<<<<<<<<<
@@ -2739,7 +2741,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
   free(__pyx_v_c_candidates);
 
-  /* "batch_jaro_winkler.pyx":74
+  /* "batch_jaro_winkler.pyx":75
  *   free(exportable_model)
  *   free(c_candidates)
  *   free(c_candidates_lengths)             # <<<<<<<<<<<<<<
@@ -2748,7 +2750,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
   free(__pyx_v_c_candidates_lengths);
 
-  /* "batch_jaro_winkler.pyx":75
+  /* "batch_jaro_winkler.pyx":76
  *   free(c_candidates)
  *   free(c_candidates_lengths)
  *   free(c_min_scores)             # <<<<<<<<<<<<<<
@@ -2757,7 +2759,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
  */
   free(__pyx_v_c_min_scores);
 
-  /* "batch_jaro_winkler.pyx":76
+  /* "batch_jaro_winkler.pyx":77
  *   free(c_candidates_lengths)
  *   free(c_min_scores)
  *   return res_exportable_model             # <<<<<<<<<<<<<<
@@ -2769,7 +2771,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
   __pyx_r = __pyx_v_res_exportable_model;
   goto __pyx_L0;
 
-  /* "batch_jaro_winkler.pyx":31
+  /* "batch_jaro_winkler.pyx":32
  * # - ['hi', 'hello']
  * # - [{ 'candidate': 'hi', 'min_score': 0.5 }, { 'candidate': 'hello', 'min_score': 0.8 }]
  * def build_exportable_model_bytes(char_width, candidates, nb_runtime_threads=1):             # <<<<<<<<<<<<<<
@@ -2800,7 +2802,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_build_exportable_model_bytes(CYTH
   return __pyx_r;
 }
 
-/* "batch_jaro_winkler.pyx":78
+/* "batch_jaro_winkler.pyx":79
  *   return res_exportable_model
  * 
  * def build_exportable_model(candidates, nb_runtime_threads=1):             # <<<<<<<<<<<<<<
@@ -2848,7 +2850,7 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_3build_exportable_model(PyObject 
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "build_exportable_model") < 0)) __PYX_ERR(0, 78, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "build_exportable_model") < 0)) __PYX_ERR(0, 79, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -2864,7 +2866,7 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_3build_exportable_model(PyObject 
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("build_exportable_model", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 78, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("build_exportable_model", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 79, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("batch_jaro_winkler.build_exportable_model", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2890,7 +2892,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_2build_exportable_model(CYTHON_UN
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("build_exportable_model", 0);
 
-  /* "batch_jaro_winkler.pyx":79
+  /* "batch_jaro_winkler.pyx":80
  * 
  * def build_exportable_model(candidates, nb_runtime_threads=1):
  *   return build_exportable_model_bytes(0, candidates, nb_runtime_threads)             # <<<<<<<<<<<<<<
@@ -2898,7 +2900,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_2build_exportable_model(CYTHON_UN
  * def build_runtime_model(exportable_model):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_build_exportable_model_bytes); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_build_exportable_model_bytes); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -2915,7 +2917,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_2build_exportable_model(CYTHON_UN
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_int_0, __pyx_v_candidates, __pyx_v_nb_runtime_threads};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
@@ -2923,13 +2925,13 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_2build_exportable_model(CYTHON_UN
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[4] = {__pyx_t_3, __pyx_int_0, __pyx_v_candidates, __pyx_v_nb_runtime_threads};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 3+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(3+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(3+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 80, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -2943,7 +2945,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_2build_exportable_model(CYTHON_UN
     __Pyx_INCREF(__pyx_v_nb_runtime_threads);
     __Pyx_GIVEREF(__pyx_v_nb_runtime_threads);
     PyTuple_SET_ITEM(__pyx_t_5, 2+__pyx_t_4, __pyx_v_nb_runtime_threads);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -2952,7 +2954,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_2build_exportable_model(CYTHON_UN
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "batch_jaro_winkler.pyx":78
+  /* "batch_jaro_winkler.pyx":79
  *   return res_exportable_model
  * 
  * def build_exportable_model(candidates, nb_runtime_threads=1):             # <<<<<<<<<<<<<<
@@ -2974,7 +2976,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_2build_exportable_model(CYTHON_UN
   return __pyx_r;
 }
 
-/* "batch_jaro_winkler.pyx":81
+/* "batch_jaro_winkler.pyx":82
  *   return build_exportable_model_bytes(0, candidates, nb_runtime_threads)
  * 
  * def build_runtime_model(exportable_model):             # <<<<<<<<<<<<<<
@@ -3005,7 +3007,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_4build_runtime_model(CYTHON_UNUSE
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("build_runtime_model", 0);
 
-  /* "batch_jaro_winkler.pyx":82
+  /* "batch_jaro_winkler.pyx":83
  * 
  * def build_runtime_model(exportable_model):
  *   return RuntimeModel(exportable_model)             # <<<<<<<<<<<<<<
@@ -3013,13 +3015,13 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_4build_runtime_model(CYTHON_UNUSE
  * cdef c_results_to_python(cbatch_jaro_winkler_headers.bjw_result *c_results, stdint.uint32_t nb_results, stdint.uint32_t char_width, char inp_encoded):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_18batch_jaro_winkler_RuntimeModel), __pyx_v_exportable_model); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_18batch_jaro_winkler_RuntimeModel), __pyx_v_exportable_model); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "batch_jaro_winkler.pyx":81
+  /* "batch_jaro_winkler.pyx":82
  *   return build_exportable_model_bytes(0, candidates, nb_runtime_threads)
  * 
  * def build_runtime_model(exportable_model):             # <<<<<<<<<<<<<<
@@ -3038,7 +3040,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_4build_runtime_model(CYTHON_UNUSE
   return __pyx_r;
 }
 
-/* "batch_jaro_winkler.pyx":84
+/* "batch_jaro_winkler.pyx":85
  *   return RuntimeModel(exportable_model)
  * 
  * cdef c_results_to_python(cbatch_jaro_winkler_headers.bjw_result *c_results, stdint.uint32_t nb_results, stdint.uint32_t char_width, char inp_encoded):             # <<<<<<<<<<<<<<
@@ -3070,7 +3072,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("c_results_to_python", 0);
 
-  /* "batch_jaro_winkler.pyx":91
+  /* "batch_jaro_winkler.pyx":92
  *   cdef stdint.uint32_t cpy_size
  * 
  *   all_candidates = None             # <<<<<<<<<<<<<<
@@ -3080,7 +3082,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
   __Pyx_INCREF(Py_None);
   __pyx_v_all_candidates = Py_None;
 
-  /* "batch_jaro_winkler.pyx":92
+  /* "batch_jaro_winkler.pyx":93
  * 
  *   all_candidates = None
  *   if not inp_encoded:             # <<<<<<<<<<<<<<
@@ -3090,7 +3092,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
   __pyx_t_1 = ((!(__pyx_v_inp_encoded != 0)) != 0);
   if (__pyx_t_1) {
 
-    /* "batch_jaro_winkler.pyx":93
+    /* "batch_jaro_winkler.pyx":94
  *   all_candidates = None
  *   if not inp_encoded:
  *     total_candidates_length = 0             # <<<<<<<<<<<<<<
@@ -3099,7 +3101,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  */
     __pyx_v_total_candidates_length = 0;
 
-    /* "batch_jaro_winkler.pyx":94
+    /* "batch_jaro_winkler.pyx":95
  *   if not inp_encoded:
  *     total_candidates_length = 0
  *     i_result = 0             # <<<<<<<<<<<<<<
@@ -3108,7 +3110,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  */
     __pyx_v_i_result = 0;
 
-    /* "batch_jaro_winkler.pyx":96
+    /* "batch_jaro_winkler.pyx":97
  *     i_result = 0
  * 
  *     while i_result < nb_results:             # <<<<<<<<<<<<<<
@@ -3119,7 +3121,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
       __pyx_t_1 = ((__pyx_v_i_result < __pyx_v_nb_results) != 0);
       if (!__pyx_t_1) break;
 
-      /* "batch_jaro_winkler.pyx":97
+      /* "batch_jaro_winkler.pyx":98
  * 
  *     while i_result < nb_results:
  *       total_candidates_length += c_results[i_result].candidate_length             # <<<<<<<<<<<<<<
@@ -3128,7 +3130,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  */
       __pyx_v_total_candidates_length = (__pyx_v_total_candidates_length + (__pyx_v_c_results[__pyx_v_i_result]).candidate_length);
 
-      /* "batch_jaro_winkler.pyx":98
+      /* "batch_jaro_winkler.pyx":99
  *     while i_result < nb_results:
  *       total_candidates_length += c_results[i_result].candidate_length
  *       i_result += 1             # <<<<<<<<<<<<<<
@@ -3138,7 +3140,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
       __pyx_v_i_result = (__pyx_v_i_result + 1);
     }
 
-    /* "batch_jaro_winkler.pyx":100
+    /* "batch_jaro_winkler.pyx":101
  *       i_result += 1
  * 
  *     tmp_all_candidates = malloc(char_width * total_candidates_length)             # <<<<<<<<<<<<<<
@@ -3147,7 +3149,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  */
     __pyx_v_tmp_all_candidates = malloc((__pyx_v_char_width * __pyx_v_total_candidates_length));
 
-    /* "batch_jaro_winkler.pyx":101
+    /* "batch_jaro_winkler.pyx":102
  * 
  *     tmp_all_candidates = malloc(char_width * total_candidates_length)
  *     tmp_all_candidates_head = tmp_all_candidates             # <<<<<<<<<<<<<<
@@ -3156,7 +3158,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  */
     __pyx_v_tmp_all_candidates_head = __pyx_v_tmp_all_candidates;
 
-    /* "batch_jaro_winkler.pyx":102
+    /* "batch_jaro_winkler.pyx":103
  *     tmp_all_candidates = malloc(char_width * total_candidates_length)
  *     tmp_all_candidates_head = tmp_all_candidates
  *     cpy_size = 0             # <<<<<<<<<<<<<<
@@ -3165,7 +3167,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  */
     __pyx_v_cpy_size = 0;
 
-    /* "batch_jaro_winkler.pyx":104
+    /* "batch_jaro_winkler.pyx":105
  *     cpy_size = 0
  * 
  *     i_result = 0             # <<<<<<<<<<<<<<
@@ -3174,7 +3176,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  */
     __pyx_v_i_result = 0;
 
-    /* "batch_jaro_winkler.pyx":105
+    /* "batch_jaro_winkler.pyx":106
  * 
  *     i_result = 0
  *     while i_result < nb_results:             # <<<<<<<<<<<<<<
@@ -3185,56 +3187,56 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
       __pyx_t_1 = ((__pyx_v_i_result < __pyx_v_nb_results) != 0);
       if (!__pyx_t_1) break;
 
-      /* "batch_jaro_winkler.pyx":106
+      /* "batch_jaro_winkler.pyx":107
  *     i_result = 0
  *     while i_result < nb_results:
  *       cpy_size = c_results[i_result].candidate_length * char_width             # <<<<<<<<<<<<<<
  *       memcpy(tmp_all_candidates_head, c_results[i_result].candidate, cpy_size)
- *       tmp_all_candidates_head += cpy_size
+ *       tmp_all_candidates_head = <void*>(<char*>tmp_all_candidates_head + cpy_size)
  */
       __pyx_v_cpy_size = ((__pyx_v_c_results[__pyx_v_i_result]).candidate_length * __pyx_v_char_width);
 
-      /* "batch_jaro_winkler.pyx":107
+      /* "batch_jaro_winkler.pyx":108
  *     while i_result < nb_results:
  *       cpy_size = c_results[i_result].candidate_length * char_width
  *       memcpy(tmp_all_candidates_head, c_results[i_result].candidate, cpy_size)             # <<<<<<<<<<<<<<
- *       tmp_all_candidates_head += cpy_size
- *       i_result += 1
+ *       tmp_all_candidates_head = <void*>(<char*>tmp_all_candidates_head + cpy_size)
+ *       i_result = i_result + 1
  */
       (void)(memcpy(__pyx_v_tmp_all_candidates_head, (__pyx_v_c_results[__pyx_v_i_result]).candidate, __pyx_v_cpy_size));
 
-      /* "batch_jaro_winkler.pyx":108
+      /* "batch_jaro_winkler.pyx":109
  *       cpy_size = c_results[i_result].candidate_length * char_width
  *       memcpy(tmp_all_candidates_head, c_results[i_result].candidate, cpy_size)
- *       tmp_all_candidates_head += cpy_size             # <<<<<<<<<<<<<<
- *       i_result += 1
+ *       tmp_all_candidates_head = <void*>(<char*>tmp_all_candidates_head + cpy_size)             # <<<<<<<<<<<<<<
+ *       i_result = i_result + 1
  * 
  */
-      __pyx_v_tmp_all_candidates_head = (__pyx_v_tmp_all_candidates_head + __pyx_v_cpy_size);
+      __pyx_v_tmp_all_candidates_head = ((void *)(((char *)__pyx_v_tmp_all_candidates_head) + __pyx_v_cpy_size));
 
-      /* "batch_jaro_winkler.pyx":109
+      /* "batch_jaro_winkler.pyx":110
  *       memcpy(tmp_all_candidates_head, c_results[i_result].candidate, cpy_size)
- *       tmp_all_candidates_head += cpy_size
- *       i_result += 1             # <<<<<<<<<<<<<<
+ *       tmp_all_candidates_head = <void*>(<char*>tmp_all_candidates_head + cpy_size)
+ *       i_result = i_result + 1             # <<<<<<<<<<<<<<
  * 
  *     all_candidates_pybytes = PyBytes_FromStringAndSize(<char*> tmp_all_candidates, char_width * total_candidates_length)
  */
       __pyx_v_i_result = (__pyx_v_i_result + 1);
     }
 
-    /* "batch_jaro_winkler.pyx":111
- *       i_result += 1
+    /* "batch_jaro_winkler.pyx":112
+ *       i_result = i_result + 1
  * 
  *     all_candidates_pybytes = PyBytes_FromStringAndSize(<char*> tmp_all_candidates, char_width * total_candidates_length)             # <<<<<<<<<<<<<<
  *     free(tmp_all_candidates)
  *     all_candidates = all_candidates_pybytes.decode('utf-32-le')
  */
-    __pyx_t_2 = PyBytes_FromStringAndSize(((char *)__pyx_v_tmp_all_candidates), (__pyx_v_char_width * __pyx_v_total_candidates_length)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
+    __pyx_t_2 = PyBytes_FromStringAndSize(((char *)__pyx_v_tmp_all_candidates), (__pyx_v_char_width * __pyx_v_total_candidates_length)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_all_candidates_pybytes = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "batch_jaro_winkler.pyx":112
+    /* "batch_jaro_winkler.pyx":113
  * 
  *     all_candidates_pybytes = PyBytes_FromStringAndSize(<char*> tmp_all_candidates, char_width * total_candidates_length)
  *     free(tmp_all_candidates)             # <<<<<<<<<<<<<<
@@ -3243,14 +3245,14 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  */
     free(__pyx_v_tmp_all_candidates);
 
-    /* "batch_jaro_winkler.pyx":113
+    /* "batch_jaro_winkler.pyx":114
  *     all_candidates_pybytes = PyBytes_FromStringAndSize(<char*> tmp_all_candidates, char_width * total_candidates_length)
  *     free(tmp_all_candidates)
  *     all_candidates = all_candidates_pybytes.decode('utf-32-le')             # <<<<<<<<<<<<<<
  * 
  *   # Preallocate for small speedup
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_all_candidates_pybytes, __pyx_n_s_decode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 113, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_all_candidates_pybytes, __pyx_n_s_decode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_4 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
@@ -3264,13 +3266,13 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
     }
     __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_kp_u_utf_32_le) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_kp_u_utf_32_le);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF_SET(__pyx_v_all_candidates, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "batch_jaro_winkler.pyx":92
+    /* "batch_jaro_winkler.pyx":93
  * 
  *   all_candidates = None
  *   if not inp_encoded:             # <<<<<<<<<<<<<<
@@ -3279,14 +3281,14 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  */
   }
 
-  /* "batch_jaro_winkler.pyx":116
+  /* "batch_jaro_winkler.pyx":117
  * 
  *   # Preallocate for small speedup
  *   results = [None] * nb_results             # <<<<<<<<<<<<<<
  *   i_result = 0
  *   cdef stdint.uint32_t candidate_length = 0
  */
-  __pyx_t_2 = PyList_New(1 * (__pyx_v_nb_results)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(1 * (__pyx_v_nb_results)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   { Py_ssize_t __pyx_temp;
     for (__pyx_temp=0; __pyx_temp < __pyx_v_nb_results; __pyx_temp++) {
@@ -3298,7 +3300,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
   __pyx_v_results = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "batch_jaro_winkler.pyx":117
+  /* "batch_jaro_winkler.pyx":118
  *   # Preallocate for small speedup
  *   results = [None] * nb_results
  *   i_result = 0             # <<<<<<<<<<<<<<
@@ -3307,7 +3309,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  */
   __pyx_v_i_result = 0;
 
-  /* "batch_jaro_winkler.pyx":118
+  /* "batch_jaro_winkler.pyx":119
  *   results = [None] * nb_results
  *   i_result = 0
  *   cdef stdint.uint32_t candidate_length = 0             # <<<<<<<<<<<<<<
@@ -3316,7 +3318,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  */
   __pyx_v_candidate_length = 0;
 
-  /* "batch_jaro_winkler.pyx":119
+  /* "batch_jaro_winkler.pyx":120
  *   i_result = 0
  *   cdef stdint.uint32_t candidate_length = 0
  *   cdef stdint.uint32_t candidate_decal = 0             # <<<<<<<<<<<<<<
@@ -3325,7 +3327,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  */
   __pyx_v_candidate_decal = 0;
 
-  /* "batch_jaro_winkler.pyx":120
+  /* "batch_jaro_winkler.pyx":121
  *   cdef stdint.uint32_t candidate_length = 0
  *   cdef stdint.uint32_t candidate_decal = 0
  *   while i_result < nb_results:             # <<<<<<<<<<<<<<
@@ -3336,7 +3338,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
     __pyx_t_1 = ((__pyx_v_i_result < __pyx_v_nb_results) != 0);
     if (!__pyx_t_1) break;
 
-    /* "batch_jaro_winkler.pyx":121
+    /* "batch_jaro_winkler.pyx":122
  *   cdef stdint.uint32_t candidate_decal = 0
  *   while i_result < nb_results:
  *     candidate_length = c_results[i_result].candidate_length             # <<<<<<<<<<<<<<
@@ -3346,7 +3348,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
     __pyx_t_5 = (__pyx_v_c_results[__pyx_v_i_result]).candidate_length;
     __pyx_v_candidate_length = __pyx_t_5;
 
-    /* "batch_jaro_winkler.pyx":122
+    /* "batch_jaro_winkler.pyx":123
  *   while i_result < nb_results:
  *     candidate_length = c_results[i_result].candidate_length
  *     if inp_encoded:             # <<<<<<<<<<<<<<
@@ -3356,19 +3358,19 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
     __pyx_t_1 = (__pyx_v_inp_encoded != 0);
     if (__pyx_t_1) {
 
-      /* "batch_jaro_winkler.pyx":123
+      /* "batch_jaro_winkler.pyx":124
  *     candidate_length = c_results[i_result].candidate_length
  *     if inp_encoded:
  *       candidate = PyBytes_FromStringAndSize(<char*> c_results[i_result].candidate, char_width * candidate_length)             # <<<<<<<<<<<<<<
  *     else:
  *       candidate = all_candidates[candidate_decal:(candidate_decal + candidate_length)]
  */
-      __pyx_t_2 = PyBytes_FromStringAndSize(((char *)(__pyx_v_c_results[__pyx_v_i_result]).candidate), (__pyx_v_char_width * __pyx_v_candidate_length)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
+      __pyx_t_2 = PyBytes_FromStringAndSize(((char *)(__pyx_v_c_results[__pyx_v_i_result]).candidate), (__pyx_v_char_width * __pyx_v_candidate_length)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_candidate, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "batch_jaro_winkler.pyx":122
+      /* "batch_jaro_winkler.pyx":123
  *   while i_result < nb_results:
  *     candidate_length = c_results[i_result].candidate_length
  *     if inp_encoded:             # <<<<<<<<<<<<<<
@@ -3378,7 +3380,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
       goto __pyx_L10;
     }
 
-    /* "batch_jaro_winkler.pyx":125
+    /* "batch_jaro_winkler.pyx":126
  *       candidate = PyBytes_FromStringAndSize(<char*> c_results[i_result].candidate, char_width * candidate_length)
  *     else:
  *       candidate = all_candidates[candidate_decal:(candidate_decal + candidate_length)]             # <<<<<<<<<<<<<<
@@ -3386,23 +3388,23 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  *     results[i_result] = (candidate, c_results[i_result].score)
  */
     /*else*/ {
-      __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_all_candidates, __pyx_v_candidate_decal, (__pyx_v_candidate_decal + __pyx_v_candidate_length), NULL, NULL, NULL, 1, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_all_candidates, __pyx_v_candidate_decal, (__pyx_v_candidate_decal + __pyx_v_candidate_length), NULL, NULL, NULL, 1, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_candidate, __pyx_t_2);
       __pyx_t_2 = 0;
     }
     __pyx_L10:;
 
-    /* "batch_jaro_winkler.pyx":127
+    /* "batch_jaro_winkler.pyx":128
  *       candidate = all_candidates[candidate_decal:(candidate_decal + candidate_length)]
  * 
  *     results[i_result] = (candidate, c_results[i_result].score)             # <<<<<<<<<<<<<<
  *     candidate_decal += candidate_length
  *     i_result += 1
  */
-    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_c_results[__pyx_v_i_result]).score); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble((__pyx_v_c_results[__pyx_v_i_result]).score); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(__pyx_v_candidate);
     __Pyx_GIVEREF(__pyx_v_candidate);
@@ -3410,10 +3412,10 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
     __Pyx_GIVEREF(__pyx_t_2);
     PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2);
     __pyx_t_2 = 0;
-    if (unlikely(__Pyx_SetItemInt(__pyx_v_results, __pyx_v_i_result, __pyx_t_3, uint32_t, 0, __Pyx_PyInt_From_uint32_t, 1, 0, 1) < 0)) __PYX_ERR(0, 127, __pyx_L1_error)
+    if (unlikely(__Pyx_SetItemInt(__pyx_v_results, __pyx_v_i_result, __pyx_t_3, uint32_t, 0, __Pyx_PyInt_From_uint32_t, 1, 0, 1) < 0)) __PYX_ERR(0, 128, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "batch_jaro_winkler.pyx":128
+    /* "batch_jaro_winkler.pyx":129
  * 
  *     results[i_result] = (candidate, c_results[i_result].score)
  *     candidate_decal += candidate_length             # <<<<<<<<<<<<<<
@@ -3422,7 +3424,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
  */
     __pyx_v_candidate_decal = (__pyx_v_candidate_decal + __pyx_v_candidate_length);
 
-    /* "batch_jaro_winkler.pyx":129
+    /* "batch_jaro_winkler.pyx":130
  *     results[i_result] = (candidate, c_results[i_result].score)
  *     candidate_decal += candidate_length
  *     i_result += 1             # <<<<<<<<<<<<<<
@@ -3432,7 +3434,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
     __pyx_v_i_result = (__pyx_v_i_result + 1);
   }
 
-  /* "batch_jaro_winkler.pyx":131
+  /* "batch_jaro_winkler.pyx":132
  *     i_result += 1
  * 
  *   return results             # <<<<<<<<<<<<<<
@@ -3444,7 +3446,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
   __pyx_r = __pyx_v_results;
   goto __pyx_L0;
 
-  /* "batch_jaro_winkler.pyx":84
+  /* "batch_jaro_winkler.pyx":85
  *   return RuntimeModel(exportable_model)
  * 
  * cdef c_results_to_python(cbatch_jaro_winkler_headers.bjw_result *c_results, stdint.uint32_t nb_results, stdint.uint32_t char_width, char inp_encoded):             # <<<<<<<<<<<<<<
@@ -3469,7 +3471,7 @@ static PyObject *__pyx_f_18batch_jaro_winkler_c_results_to_python(bjw_result *__
   return __pyx_r;
 }
 
-/* "batch_jaro_winkler.pyx":133
+/* "batch_jaro_winkler.pyx":134
  *   return results
  * 
  * def jaro_winkler_distance_bytes(char_width, RuntimeModel runtime_model, inp, min_score=None, weight=0.1, threshold=0.7, n_best_results=None):             # <<<<<<<<<<<<<<
@@ -3531,13 +3533,13 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_7jaro_winkler_distance_bytes(PyOb
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_runtime_model)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaro_winkler_distance_bytes", 0, 3, 7, 1); __PYX_ERR(0, 133, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaro_winkler_distance_bytes", 0, 3, 7, 1); __PYX_ERR(0, 134, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_inp)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaro_winkler_distance_bytes", 0, 3, 7, 2); __PYX_ERR(0, 133, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaro_winkler_distance_bytes", 0, 3, 7, 2); __PYX_ERR(0, 134, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
@@ -3565,7 +3567,7 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_7jaro_winkler_distance_bytes(PyOb
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaro_winkler_distance_bytes") < 0)) __PYX_ERR(0, 133, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaro_winkler_distance_bytes") < 0)) __PYX_ERR(0, 134, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -3594,13 +3596,13 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_7jaro_winkler_distance_bytes(PyOb
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaro_winkler_distance_bytes", 0, 3, 7, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 133, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaro_winkler_distance_bytes", 0, 3, 7, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 134, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("batch_jaro_winkler.jaro_winkler_distance_bytes", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_runtime_model), __pyx_ptype_18batch_jaro_winkler_RuntimeModel, 1, "runtime_model", 0))) __PYX_ERR(0, 133, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_runtime_model), __pyx_ptype_18batch_jaro_winkler_RuntimeModel, 1, "runtime_model", 0))) __PYX_ERR(0, 134, __pyx_L1_error)
   __pyx_r = __pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(__pyx_self, __pyx_v_char_width, __pyx_v_runtime_model, __pyx_v_inp, __pyx_v_min_score, __pyx_v_weight, __pyx_v_threshold, __pyx_v_n_best_results);
 
   /* function exit code */
@@ -3648,7 +3650,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
   __Pyx_INCREF(__pyx_v_threshold);
   __Pyx_INCREF(__pyx_v_n_best_results);
 
-  /* "batch_jaro_winkler.pyx":134
+  /* "batch_jaro_winkler.pyx":135
  * 
  * def jaro_winkler_distance_bytes(char_width, RuntimeModel runtime_model, inp, min_score=None, weight=0.1, threshold=0.7, n_best_results=None):
  *   if min_score is not None and (min_score < 0.0 or min_score > 1.0):             # <<<<<<<<<<<<<<
@@ -3662,35 +3664,35 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
     __pyx_t_1 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_4 = PyObject_RichCompare(__pyx_v_min_score, __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_v_min_score, __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (!__pyx_t_3) {
   } else {
     __pyx_t_1 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_4 = PyObject_RichCompare(__pyx_v_min_score, __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_v_min_score, __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_1 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "batch_jaro_winkler.pyx":135
+    /* "batch_jaro_winkler.pyx":136
  * def jaro_winkler_distance_bytes(char_width, RuntimeModel runtime_model, inp, min_score=None, weight=0.1, threshold=0.7, n_best_results=None):
  *   if min_score is not None and (min_score < 0.0 or min_score > 1.0):
  *     raise ValueError('min_score must be >= 0.0 and <= 1.0')             # <<<<<<<<<<<<<<
  *   if weight is not None and (weight < 0.0 or weight > 0.25):
  *     raise ValueError('weight must be >= 0.0 and <= 0.25')
  */
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 135, __pyx_L1_error)
+    __PYX_ERR(0, 136, __pyx_L1_error)
 
-    /* "batch_jaro_winkler.pyx":134
+    /* "batch_jaro_winkler.pyx":135
  * 
  * def jaro_winkler_distance_bytes(char_width, RuntimeModel runtime_model, inp, min_score=None, weight=0.1, threshold=0.7, n_best_results=None):
  *   if min_score is not None and (min_score < 0.0 or min_score > 1.0):             # <<<<<<<<<<<<<<
@@ -3699,7 +3701,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":136
+  /* "batch_jaro_winkler.pyx":137
  *   if min_score is not None and (min_score < 0.0 or min_score > 1.0):
  *     raise ValueError('min_score must be >= 0.0 and <= 1.0')
  *   if weight is not None and (weight < 0.0 or weight > 0.25):             # <<<<<<<<<<<<<<
@@ -3713,35 +3715,35 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
     __pyx_t_1 = __pyx_t_2;
     goto __pyx_L8_bool_binop_done;
   }
-  __pyx_t_4 = PyObject_RichCompare(__pyx_v_weight, __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_v_weight, __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (!__pyx_t_2) {
   } else {
     __pyx_t_1 = __pyx_t_2;
     goto __pyx_L8_bool_binop_done;
   }
-  __pyx_t_4 = PyObject_RichCompare(__pyx_v_weight, __pyx_float_0_25, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_v_weight, __pyx_float_0_25, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_1 = __pyx_t_2;
   __pyx_L8_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "batch_jaro_winkler.pyx":137
+    /* "batch_jaro_winkler.pyx":138
  *     raise ValueError('min_score must be >= 0.0 and <= 1.0')
  *   if weight is not None and (weight < 0.0 or weight > 0.25):
  *     raise ValueError('weight must be >= 0.0 and <= 0.25')             # <<<<<<<<<<<<<<
  *   if threshold is not None and (threshold < 0.0 or threshold > 1.0):
  *     raise ValueError('threshold must be >= 0.0 and <= 1.0')
  */
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 137, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__8, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 138, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 137, __pyx_L1_error)
+    __PYX_ERR(0, 138, __pyx_L1_error)
 
-    /* "batch_jaro_winkler.pyx":136
+    /* "batch_jaro_winkler.pyx":137
  *   if min_score is not None and (min_score < 0.0 or min_score > 1.0):
  *     raise ValueError('min_score must be >= 0.0 and <= 1.0')
  *   if weight is not None and (weight < 0.0 or weight > 0.25):             # <<<<<<<<<<<<<<
@@ -3750,7 +3752,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":138
+  /* "batch_jaro_winkler.pyx":139
  *   if weight is not None and (weight < 0.0 or weight > 0.25):
  *     raise ValueError('weight must be >= 0.0 and <= 0.25')
  *   if threshold is not None and (threshold < 0.0 or threshold > 1.0):             # <<<<<<<<<<<<<<
@@ -3764,35 +3766,35 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
     __pyx_t_1 = __pyx_t_3;
     goto __pyx_L12_bool_binop_done;
   }
-  __pyx_t_4 = PyObject_RichCompare(__pyx_v_threshold, __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 138, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_v_threshold, __pyx_float_0_0, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (!__pyx_t_3) {
   } else {
     __pyx_t_1 = __pyx_t_3;
     goto __pyx_L12_bool_binop_done;
   }
-  __pyx_t_4 = PyObject_RichCompare(__pyx_v_threshold, __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 138, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_v_threshold, __pyx_float_1_0, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_1 = __pyx_t_3;
   __pyx_L12_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "batch_jaro_winkler.pyx":139
+    /* "batch_jaro_winkler.pyx":140
  *     raise ValueError('weight must be >= 0.0 and <= 0.25')
  *   if threshold is not None and (threshold < 0.0 or threshold > 1.0):
  *     raise ValueError('threshold must be >= 0.0 and <= 1.0')             # <<<<<<<<<<<<<<
  *   if n_best_results is not None and n_best_results < 0:
  *     raise ValueError('n_best_results must be >= 0')
  */
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 139, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 140, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 139, __pyx_L1_error)
+    __PYX_ERR(0, 140, __pyx_L1_error)
 
-    /* "batch_jaro_winkler.pyx":138
+    /* "batch_jaro_winkler.pyx":139
  *   if weight is not None and (weight < 0.0 or weight > 0.25):
  *     raise ValueError('weight must be >= 0.0 and <= 0.25')
  *   if threshold is not None and (threshold < 0.0 or threshold > 1.0):             # <<<<<<<<<<<<<<
@@ -3801,7 +3803,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":140
+  /* "batch_jaro_winkler.pyx":141
  *   if threshold is not None and (threshold < 0.0 or threshold > 1.0):
  *     raise ValueError('threshold must be >= 0.0 and <= 1.0')
  *   if n_best_results is not None and n_best_results < 0:             # <<<<<<<<<<<<<<
@@ -3815,27 +3817,27 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
     __pyx_t_1 = __pyx_t_2;
     goto __pyx_L16_bool_binop_done;
   }
-  __pyx_t_4 = PyObject_RichCompare(__pyx_v_n_best_results, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 140, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 140, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_v_n_best_results, __pyx_int_0, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_1 = __pyx_t_2;
   __pyx_L16_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "batch_jaro_winkler.pyx":141
+    /* "batch_jaro_winkler.pyx":142
  *     raise ValueError('threshold must be >= 0.0 and <= 1.0')
  *   if n_best_results is not None and n_best_results < 0:
  *     raise ValueError('n_best_results must be >= 0')             # <<<<<<<<<<<<<<
  *   if n_best_results == 0:
  *     return []
  */
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 141, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 142, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 141, __pyx_L1_error)
+    __PYX_ERR(0, 142, __pyx_L1_error)
 
-    /* "batch_jaro_winkler.pyx":140
+    /* "batch_jaro_winkler.pyx":141
  *   if threshold is not None and (threshold < 0.0 or threshold > 1.0):
  *     raise ValueError('threshold must be >= 0.0 and <= 1.0')
  *   if n_best_results is not None and n_best_results < 0:             # <<<<<<<<<<<<<<
@@ -3844,20 +3846,20 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":142
+  /* "batch_jaro_winkler.pyx":143
  *   if n_best_results is not None and n_best_results < 0:
  *     raise ValueError('n_best_results must be >= 0')
  *   if n_best_results == 0:             # <<<<<<<<<<<<<<
  *     return []
  *   if min_score is None:
  */
-  __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_n_best_results, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_EqObjC(__pyx_v_n_best_results, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_1) {
 
-    /* "batch_jaro_winkler.pyx":143
+    /* "batch_jaro_winkler.pyx":144
  *     raise ValueError('n_best_results must be >= 0')
  *   if n_best_results == 0:
  *     return []             # <<<<<<<<<<<<<<
@@ -3865,13 +3867,13 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  *     min_score = -1.0
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 143, __pyx_L1_error)
+    __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 144, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_r = __pyx_t_4;
     __pyx_t_4 = 0;
     goto __pyx_L0;
 
-    /* "batch_jaro_winkler.pyx":142
+    /* "batch_jaro_winkler.pyx":143
  *   if n_best_results is not None and n_best_results < 0:
  *     raise ValueError('n_best_results must be >= 0')
  *   if n_best_results == 0:             # <<<<<<<<<<<<<<
@@ -3880,7 +3882,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":144
+  /* "batch_jaro_winkler.pyx":145
  *   if n_best_results == 0:
  *     return []
  *   if min_score is None:             # <<<<<<<<<<<<<<
@@ -3891,7 +3893,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "batch_jaro_winkler.pyx":145
+    /* "batch_jaro_winkler.pyx":146
  *     return []
  *   if min_score is None:
  *     min_score = -1.0             # <<<<<<<<<<<<<<
@@ -3901,7 +3903,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
     __Pyx_INCREF(__pyx_float_neg_1_0);
     __Pyx_DECREF_SET(__pyx_v_min_score, __pyx_float_neg_1_0);
 
-    /* "batch_jaro_winkler.pyx":144
+    /* "batch_jaro_winkler.pyx":145
  *   if n_best_results == 0:
  *     return []
  *   if min_score is None:             # <<<<<<<<<<<<<<
@@ -3910,7 +3912,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":146
+  /* "batch_jaro_winkler.pyx":147
  *   if min_score is None:
  *     min_score = -1.0
  *   if weight is None:             # <<<<<<<<<<<<<<
@@ -3921,7 +3923,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
-    /* "batch_jaro_winkler.pyx":147
+    /* "batch_jaro_winkler.pyx":148
  *     min_score = -1.0
  *   if weight is None:
  *     weight = -1.0             # <<<<<<<<<<<<<<
@@ -3931,7 +3933,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
     __Pyx_INCREF(__pyx_float_neg_1_0);
     __Pyx_DECREF_SET(__pyx_v_weight, __pyx_float_neg_1_0);
 
-    /* "batch_jaro_winkler.pyx":146
+    /* "batch_jaro_winkler.pyx":147
  *   if min_score is None:
  *     min_score = -1.0
  *   if weight is None:             # <<<<<<<<<<<<<<
@@ -3940,7 +3942,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":148
+  /* "batch_jaro_winkler.pyx":149
  *   if weight is None:
  *     weight = -1.0
  *   if threshold is None:             # <<<<<<<<<<<<<<
@@ -3951,7 +3953,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "batch_jaro_winkler.pyx":149
+    /* "batch_jaro_winkler.pyx":150
  *     weight = -1.0
  *   if threshold is None:
  *     threshold = -1.0             # <<<<<<<<<<<<<<
@@ -3961,7 +3963,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
     __Pyx_INCREF(__pyx_float_neg_1_0);
     __Pyx_DECREF_SET(__pyx_v_threshold, __pyx_float_neg_1_0);
 
-    /* "batch_jaro_winkler.pyx":148
+    /* "batch_jaro_winkler.pyx":149
  *   if weight is None:
  *     weight = -1.0
  *   if threshold is None:             # <<<<<<<<<<<<<<
@@ -3970,7 +3972,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":150
+  /* "batch_jaro_winkler.pyx":151
  *   if threshold is None:
  *     threshold = -1.0
  *   if n_best_results is None:             # <<<<<<<<<<<<<<
@@ -3981,7 +3983,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
-    /* "batch_jaro_winkler.pyx":151
+    /* "batch_jaro_winkler.pyx":152
  *     threshold = -1.0
  *   if n_best_results is None:
  *     n_best_results = 0             # <<<<<<<<<<<<<<
@@ -3991,7 +3993,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
     __Pyx_INCREF(__pyx_int_0);
     __Pyx_DECREF_SET(__pyx_v_n_best_results, __pyx_int_0);
 
-    /* "batch_jaro_winkler.pyx":150
+    /* "batch_jaro_winkler.pyx":151
  *   if threshold is None:
  *     threshold = -1.0
  *   if n_best_results is None:             # <<<<<<<<<<<<<<
@@ -4000,30 +4002,30 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":153
+  /* "batch_jaro_winkler.pyx":154
  *     n_best_results = 0
  * 
  *   inp_encoded = char_width != 0             # <<<<<<<<<<<<<<
  *   if not inp_encoded:
  *     char_width = 4
  */
-  __pyx_t_4 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_inp_encoded = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "batch_jaro_winkler.pyx":154
+  /* "batch_jaro_winkler.pyx":155
  * 
  *   inp_encoded = char_width != 0
  *   if not inp_encoded:             # <<<<<<<<<<<<<<
  *     char_width = 4
  *   if char_width != 1 and char_width != 2 and char_width != 4:
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_inp_encoded); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_inp_encoded); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 155, __pyx_L1_error)
   __pyx_t_2 = ((!__pyx_t_1) != 0);
   if (__pyx_t_2) {
 
-    /* "batch_jaro_winkler.pyx":155
+    /* "batch_jaro_winkler.pyx":156
  *   inp_encoded = char_width != 0
  *   if not inp_encoded:
  *     char_width = 4             # <<<<<<<<<<<<<<
@@ -4033,7 +4035,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
     __Pyx_INCREF(__pyx_int_4);
     __Pyx_DECREF_SET(__pyx_v_char_width, __pyx_int_4);
 
-    /* "batch_jaro_winkler.pyx":154
+    /* "batch_jaro_winkler.pyx":155
  * 
  *   inp_encoded = char_width != 0
  *   if not inp_encoded:             # <<<<<<<<<<<<<<
@@ -4042,53 +4044,53 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":156
+  /* "batch_jaro_winkler.pyx":157
  *   if not inp_encoded:
  *     char_width = 4
  *   if char_width != 1 and char_width != 2 and char_width != 4:             # <<<<<<<<<<<<<<
  *     raise ValueError('char_width must be 1, 2 or 4')
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 157, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_1) {
   } else {
     __pyx_t_2 = __pyx_t_1;
     goto __pyx_L25_bool_binop_done;
   }
-  __pyx_t_4 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_2, 2, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 157, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_1) {
   } else {
     __pyx_t_2 = __pyx_t_1;
     goto __pyx_L25_bool_binop_done;
   }
-  __pyx_t_4 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_4, 4, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_NeObjC(__pyx_v_char_width, __pyx_int_4, 4, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 157, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_2 = __pyx_t_1;
   __pyx_L25_bool_binop_done:;
   if (unlikely(__pyx_t_2)) {
 
-    /* "batch_jaro_winkler.pyx":157
+    /* "batch_jaro_winkler.pyx":158
  *     char_width = 4
  *   if char_width != 1 and char_width != 2 and char_width != 4:
  *     raise ValueError('char_width must be 1, 2 or 4')             # <<<<<<<<<<<<<<
  * 
  *   if not inp_encoded:
  */
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 157, __pyx_L1_error)
+    __PYX_ERR(0, 158, __pyx_L1_error)
 
-    /* "batch_jaro_winkler.pyx":156
+    /* "batch_jaro_winkler.pyx":157
  *   if not inp_encoded:
  *     char_width = 4
  *   if char_width != 1 and char_width != 2 and char_width != 4:             # <<<<<<<<<<<<<<
@@ -4097,25 +4099,25 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":159
+  /* "batch_jaro_winkler.pyx":160
  *     raise ValueError('char_width must be 1, 2 or 4')
  * 
  *   if not inp_encoded:             # <<<<<<<<<<<<<<
  *     inp = inp.encode('utf-32-le')
  *   # We explicitely cast before the GIL release because we don't want to touch python objects with the GIL released
  */
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_inp_encoded); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 159, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_inp_encoded); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 160, __pyx_L1_error)
   __pyx_t_1 = ((!__pyx_t_2) != 0);
   if (__pyx_t_1) {
 
-    /* "batch_jaro_winkler.pyx":160
+    /* "batch_jaro_winkler.pyx":161
  * 
  *   if not inp_encoded:
  *     inp = inp.encode('utf-32-le')             # <<<<<<<<<<<<<<
  *   # We explicitely cast before the GIL release because we don't want to touch python objects with the GIL released
  *   cdef void *c_inp = <void*> PyBytes_AS_STRING(inp)
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_inp, __pyx_n_s_encode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_inp, __pyx_n_s_encode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 161, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_5))) {
@@ -4129,13 +4131,13 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
     }
     __pyx_t_4 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_6, __pyx_kp_u_utf_32_le) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_kp_u_utf_32_le);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 160, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 161, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF_SET(__pyx_v_inp, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "batch_jaro_winkler.pyx":159
+    /* "batch_jaro_winkler.pyx":160
  *     raise ValueError('char_width must be 1, 2 or 4')
  * 
  *   if not inp_encoded:             # <<<<<<<<<<<<<<
@@ -4144,7 +4146,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":162
+  /* "batch_jaro_winkler.pyx":163
  *     inp = inp.encode('utf-32-le')
  *   # We explicitely cast before the GIL release because we don't want to touch python objects with the GIL released
  *   cdef void *c_inp = <void*> PyBytes_AS_STRING(inp)             # <<<<<<<<<<<<<<
@@ -4153,33 +4155,33 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   __pyx_v_c_inp = ((void *)PyBytes_AS_STRING(__pyx_v_inp));
 
-  /* "batch_jaro_winkler.pyx":163
+  /* "batch_jaro_winkler.pyx":164
  *   # We explicitely cast before the GIL release because we don't want to touch python objects with the GIL released
  *   cdef void *c_inp = <void*> PyBytes_AS_STRING(inp)
  *   cdef stdint.uint32_t c_input_length = len(inp)             # <<<<<<<<<<<<<<
  *   c_input_length = <stdint.uint32_t> (c_input_length // char_width)
  *   cdef void *c_runtime_model = runtime_model.model
  */
-  __pyx_t_7 = PyObject_Length(__pyx_v_inp); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 163, __pyx_L1_error)
+  __pyx_t_7 = PyObject_Length(__pyx_v_inp); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 164, __pyx_L1_error)
   __pyx_v_c_input_length = __pyx_t_7;
 
-  /* "batch_jaro_winkler.pyx":164
+  /* "batch_jaro_winkler.pyx":165
  *   cdef void *c_inp = <void*> PyBytes_AS_STRING(inp)
  *   cdef stdint.uint32_t c_input_length = len(inp)
  *   c_input_length = <stdint.uint32_t> (c_input_length // char_width)             # <<<<<<<<<<<<<<
  *   cdef void *c_runtime_model = runtime_model.model
  *   cdef float c_min_score = min_score
  */
-  __pyx_t_4 = __Pyx_PyInt_From_uint32_t(__pyx_v_c_input_length); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_uint32_t(__pyx_v_c_input_length); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyNumber_FloorDivide(__pyx_t_4, __pyx_v_char_width); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_FloorDivide(__pyx_t_4, __pyx_v_char_width); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_8 = __Pyx_PyInt_As_uint32_t(__pyx_t_5); if (unlikely((__pyx_t_8 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyInt_As_uint32_t(__pyx_t_5); if (unlikely((__pyx_t_8 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_c_input_length = ((uint32_t)__pyx_t_8);
 
-  /* "batch_jaro_winkler.pyx":165
+  /* "batch_jaro_winkler.pyx":166
  *   cdef stdint.uint32_t c_input_length = len(inp)
  *   c_input_length = <stdint.uint32_t> (c_input_length // char_width)
  *   cdef void *c_runtime_model = runtime_model.model             # <<<<<<<<<<<<<<
@@ -4189,47 +4191,47 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
   __pyx_t_9 = __pyx_v_runtime_model->model;
   __pyx_v_c_runtime_model = __pyx_t_9;
 
-  /* "batch_jaro_winkler.pyx":166
+  /* "batch_jaro_winkler.pyx":167
  *   c_input_length = <stdint.uint32_t> (c_input_length // char_width)
  *   cdef void *c_runtime_model = runtime_model.model
  *   cdef float c_min_score = min_score             # <<<<<<<<<<<<<<
  *   cdef float c_weight = weight
  *   cdef float c_threshold = threshold
  */
-  __pyx_t_10 = __pyx_PyFloat_AsFloat(__pyx_v_min_score); if (unlikely((__pyx_t_10 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 166, __pyx_L1_error)
+  __pyx_t_10 = __pyx_PyFloat_AsFloat(__pyx_v_min_score); if (unlikely((__pyx_t_10 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 167, __pyx_L1_error)
   __pyx_v_c_min_score = __pyx_t_10;
 
-  /* "batch_jaro_winkler.pyx":167
+  /* "batch_jaro_winkler.pyx":168
  *   cdef void *c_runtime_model = runtime_model.model
  *   cdef float c_min_score = min_score
  *   cdef float c_weight = weight             # <<<<<<<<<<<<<<
  *   cdef float c_threshold = threshold
  *   cdef stdint.uint32_t c_n_best_results = n_best_results
  */
-  __pyx_t_10 = __pyx_PyFloat_AsFloat(__pyx_v_weight); if (unlikely((__pyx_t_10 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_10 = __pyx_PyFloat_AsFloat(__pyx_v_weight); if (unlikely((__pyx_t_10 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 168, __pyx_L1_error)
   __pyx_v_c_weight = __pyx_t_10;
 
-  /* "batch_jaro_winkler.pyx":168
+  /* "batch_jaro_winkler.pyx":169
  *   cdef float c_min_score = min_score
  *   cdef float c_weight = weight
  *   cdef float c_threshold = threshold             # <<<<<<<<<<<<<<
  *   cdef stdint.uint32_t c_n_best_results = n_best_results
  *   cdef stdint.uint32_t nb_results = 0
  */
-  __pyx_t_10 = __pyx_PyFloat_AsFloat(__pyx_v_threshold); if (unlikely((__pyx_t_10 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_10 = __pyx_PyFloat_AsFloat(__pyx_v_threshold); if (unlikely((__pyx_t_10 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 169, __pyx_L1_error)
   __pyx_v_c_threshold = __pyx_t_10;
 
-  /* "batch_jaro_winkler.pyx":169
+  /* "batch_jaro_winkler.pyx":170
  *   cdef float c_weight = weight
  *   cdef float c_threshold = threshold
  *   cdef stdint.uint32_t c_n_best_results = n_best_results             # <<<<<<<<<<<<<<
  *   cdef stdint.uint32_t nb_results = 0
  *   cdef cbatch_jaro_winkler_headers.bjw_result *c_results = NULL
  */
-  __pyx_t_8 = __Pyx_PyInt_As_uint32_t(__pyx_v_n_best_results); if (unlikely((__pyx_t_8 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 169, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyInt_As_uint32_t(__pyx_v_n_best_results); if (unlikely((__pyx_t_8 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 170, __pyx_L1_error)
   __pyx_v_c_n_best_results = __pyx_t_8;
 
-  /* "batch_jaro_winkler.pyx":170
+  /* "batch_jaro_winkler.pyx":171
  *   cdef float c_threshold = threshold
  *   cdef stdint.uint32_t c_n_best_results = n_best_results
  *   cdef stdint.uint32_t nb_results = 0             # <<<<<<<<<<<<<<
@@ -4238,7 +4240,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   __pyx_v_nb_results = 0;
 
-  /* "batch_jaro_winkler.pyx":171
+  /* "batch_jaro_winkler.pyx":172
  *   cdef stdint.uint32_t c_n_best_results = n_best_results
  *   cdef stdint.uint32_t nb_results = 0
  *   cdef cbatch_jaro_winkler_headers.bjw_result *c_results = NULL             # <<<<<<<<<<<<<<
@@ -4247,7 +4249,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   __pyx_v_c_results = NULL;
 
-  /* "batch_jaro_winkler.pyx":172
+  /* "batch_jaro_winkler.pyx":173
  *   cdef stdint.uint32_t nb_results = 0
  *   cdef cbatch_jaro_winkler_headers.bjw_result *c_results = NULL
  *   with nogil:             # <<<<<<<<<<<<<<
@@ -4262,7 +4264,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
       #endif
       /*try:*/ {
 
-        /* "batch_jaro_winkler.pyx":173
+        /* "batch_jaro_winkler.pyx":174
  *   cdef cbatch_jaro_winkler_headers.bjw_result *c_results = NULL
  *   with nogil:
  *     c_results = cbatch_jaro_winkler_headers.bjw_jaro_winkler_distance(c_runtime_model, c_inp, c_input_length, c_min_score, c_weight, c_threshold, c_n_best_results, &nb_results)             # <<<<<<<<<<<<<<
@@ -4272,7 +4274,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
         __pyx_v_c_results = bjw_jaro_winkler_distance(__pyx_v_c_runtime_model, __pyx_v_c_inp, __pyx_v_c_input_length, __pyx_v_c_min_score, __pyx_v_c_weight, __pyx_v_c_threshold, __pyx_v_c_n_best_results, (&__pyx_v_nb_results));
       }
 
-      /* "batch_jaro_winkler.pyx":172
+      /* "batch_jaro_winkler.pyx":173
  *   cdef stdint.uint32_t nb_results = 0
  *   cdef cbatch_jaro_winkler_headers.bjw_result *c_results = NULL
  *   with nogil:             # <<<<<<<<<<<<<<
@@ -4291,7 +4293,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
       }
   }
 
-  /* "batch_jaro_winkler.pyx":174
+  /* "batch_jaro_winkler.pyx":175
  *   with nogil:
  *     c_results = cbatch_jaro_winkler_headers.bjw_jaro_winkler_distance(c_runtime_model, c_inp, c_input_length, c_min_score, c_weight, c_threshold, c_n_best_results, &nb_results)
  *   if not c_results:             # <<<<<<<<<<<<<<
@@ -4301,20 +4303,20 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
   __pyx_t_1 = ((!(__pyx_v_c_results != 0)) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "batch_jaro_winkler.pyx":175
+    /* "batch_jaro_winkler.pyx":176
  *     c_results = cbatch_jaro_winkler_headers.bjw_jaro_winkler_distance(c_runtime_model, c_inp, c_input_length, c_min_score, c_weight, c_threshold, c_n_best_results, &nb_results)
  *   if not c_results:
  *     raise RuntimeError('batch_jaro_winkler.jaro_winkler_distance failed')             # <<<<<<<<<<<<<<
  * 
  *   results = c_results_to_python(c_results, nb_results, char_width, inp_encoded)
  */
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 175, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 176, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_Raise(__pyx_t_5, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __PYX_ERR(0, 175, __pyx_L1_error)
+    __PYX_ERR(0, 176, __pyx_L1_error)
 
-    /* "batch_jaro_winkler.pyx":174
+    /* "batch_jaro_winkler.pyx":175
  *   with nogil:
  *     c_results = cbatch_jaro_winkler_headers.bjw_jaro_winkler_distance(c_runtime_model, c_inp, c_input_length, c_min_score, c_weight, c_threshold, c_n_best_results, &nb_results)
  *   if not c_results:             # <<<<<<<<<<<<<<
@@ -4323,21 +4325,21 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   }
 
-  /* "batch_jaro_winkler.pyx":177
+  /* "batch_jaro_winkler.pyx":178
  *     raise RuntimeError('batch_jaro_winkler.jaro_winkler_distance failed')
  * 
  *   results = c_results_to_python(c_results, nb_results, char_width, inp_encoded)             # <<<<<<<<<<<<<<
  * 
  *   free(c_results)
  */
-  __pyx_t_8 = __Pyx_PyInt_As_uint32_t(__pyx_v_char_width); if (unlikely((__pyx_t_8 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 177, __pyx_L1_error)
-  __pyx_t_11 = __Pyx_PyInt_As_char(__pyx_v_inp_encoded); if (unlikely((__pyx_t_11 == (char)-1) && PyErr_Occurred())) __PYX_ERR(0, 177, __pyx_L1_error)
-  __pyx_t_5 = __pyx_f_18batch_jaro_winkler_c_results_to_python(__pyx_v_c_results, __pyx_v_nb_results, __pyx_t_8, __pyx_t_11); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyInt_As_uint32_t(__pyx_v_char_width); if (unlikely((__pyx_t_8 == ((uint32_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 178, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyInt_As_char(__pyx_v_inp_encoded); if (unlikely((__pyx_t_11 == (char)-1) && PyErr_Occurred())) __PYX_ERR(0, 178, __pyx_L1_error)
+  __pyx_t_5 = __pyx_f_18batch_jaro_winkler_c_results_to_python(__pyx_v_c_results, __pyx_v_nb_results, __pyx_t_8, __pyx_t_11); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_v_results = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "batch_jaro_winkler.pyx":179
+  /* "batch_jaro_winkler.pyx":180
  *   results = c_results_to_python(c_results, nb_results, char_width, inp_encoded)
  * 
  *   free(c_results)             # <<<<<<<<<<<<<<
@@ -4346,7 +4348,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
  */
   free(__pyx_v_c_results);
 
-  /* "batch_jaro_winkler.pyx":180
+  /* "batch_jaro_winkler.pyx":181
  * 
  *   free(c_results)
  *   return results             # <<<<<<<<<<<<<<
@@ -4358,7 +4360,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
   __pyx_r = __pyx_v_results;
   goto __pyx_L0;
 
-  /* "batch_jaro_winkler.pyx":133
+  /* "batch_jaro_winkler.pyx":134
  *   return results
  * 
  * def jaro_winkler_distance_bytes(char_width, RuntimeModel runtime_model, inp, min_score=None, weight=0.1, threshold=0.7, n_best_results=None):             # <<<<<<<<<<<<<<
@@ -4387,7 +4389,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_6jaro_winkler_distance_bytes(CYTH
   return __pyx_r;
 }
 
-/* "batch_jaro_winkler.pyx":182
+/* "batch_jaro_winkler.pyx":183
  *   return results
  * 
  * def jaro_winkler_distance(RuntimeModel runtime_model, inp, min_score=None, weight=0.1, threshold=0.7, n_best_results=None):             # <<<<<<<<<<<<<<
@@ -4446,7 +4448,7 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_9jaro_winkler_distance(PyObject *
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_inp)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaro_winkler_distance", 0, 2, 6, 1); __PYX_ERR(0, 182, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaro_winkler_distance", 0, 2, 6, 1); __PYX_ERR(0, 183, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -4474,7 +4476,7 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_9jaro_winkler_distance(PyObject *
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaro_winkler_distance") < 0)) __PYX_ERR(0, 182, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaro_winkler_distance") < 0)) __PYX_ERR(0, 183, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -4501,13 +4503,13 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_9jaro_winkler_distance(PyObject *
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaro_winkler_distance", 0, 2, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 182, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaro_winkler_distance", 0, 2, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 183, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("batch_jaro_winkler.jaro_winkler_distance", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_runtime_model), __pyx_ptype_18batch_jaro_winkler_RuntimeModel, 1, "runtime_model", 0))) __PYX_ERR(0, 182, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_runtime_model), __pyx_ptype_18batch_jaro_winkler_RuntimeModel, 1, "runtime_model", 0))) __PYX_ERR(0, 183, __pyx_L1_error)
   __pyx_r = __pyx_pf_18batch_jaro_winkler_8jaro_winkler_distance(__pyx_self, __pyx_v_runtime_model, __pyx_v_inp, __pyx_v_min_score, __pyx_v_weight, __pyx_v_threshold, __pyx_v_n_best_results);
 
   /* function exit code */
@@ -4531,7 +4533,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_8jaro_winkler_distance(CYTHON_UNU
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("jaro_winkler_distance", 0);
 
-  /* "batch_jaro_winkler.pyx":183
+  /* "batch_jaro_winkler.pyx":184
  * 
  * def jaro_winkler_distance(RuntimeModel runtime_model, inp, min_score=None, weight=0.1, threshold=0.7, n_best_results=None):
  *   return jaro_winkler_distance_bytes(0, runtime_model, inp, min_score=min_score, weight=weight, threshold=threshold, n_best_results=n_best_results)             # <<<<<<<<<<<<<<
@@ -4539,9 +4541,9 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_8jaro_winkler_distance(CYTHON_UNU
  * def jaro_distance_bytes(char_width, RuntimeModel runtime_model, inp, min_score=None, n_best_results=None):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_jaro_winkler_distance_bytes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_jaro_winkler_distance_bytes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
@@ -4552,13 +4554,13 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_8jaro_winkler_distance(CYTHON_UNU
   __Pyx_INCREF(__pyx_v_inp);
   __Pyx_GIVEREF(__pyx_v_inp);
   PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_inp);
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_min_score, __pyx_v_min_score) < 0) __PYX_ERR(0, 183, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_weight, __pyx_v_weight) < 0) __PYX_ERR(0, 183, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_threshold, __pyx_v_threshold) < 0) __PYX_ERR(0, 183, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_n_best_results, __pyx_v_n_best_results) < 0) __PYX_ERR(0, 183, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 183, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_min_score, __pyx_v_min_score) < 0) __PYX_ERR(0, 184, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_weight, __pyx_v_weight) < 0) __PYX_ERR(0, 184, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_threshold, __pyx_v_threshold) < 0) __PYX_ERR(0, 184, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_n_best_results, __pyx_v_n_best_results) < 0) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -4567,7 +4569,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_8jaro_winkler_distance(CYTHON_UNU
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "batch_jaro_winkler.pyx":182
+  /* "batch_jaro_winkler.pyx":183
  *   return results
  * 
  * def jaro_winkler_distance(RuntimeModel runtime_model, inp, min_score=None, weight=0.1, threshold=0.7, n_best_results=None):             # <<<<<<<<<<<<<<
@@ -4589,7 +4591,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_8jaro_winkler_distance(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "batch_jaro_winkler.pyx":185
+/* "batch_jaro_winkler.pyx":186
  *   return jaro_winkler_distance_bytes(0, runtime_model, inp, min_score=min_score, weight=weight, threshold=threshold, n_best_results=n_best_results)
  * 
  * def jaro_distance_bytes(char_width, RuntimeModel runtime_model, inp, min_score=None, n_best_results=None):             # <<<<<<<<<<<<<<
@@ -4643,13 +4645,13 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_11jaro_distance_bytes(PyObject *_
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_runtime_model)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaro_distance_bytes", 0, 3, 5, 1); __PYX_ERR(0, 185, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaro_distance_bytes", 0, 3, 5, 1); __PYX_ERR(0, 186, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_inp)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaro_distance_bytes", 0, 3, 5, 2); __PYX_ERR(0, 185, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaro_distance_bytes", 0, 3, 5, 2); __PYX_ERR(0, 186, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
@@ -4665,7 +4667,7 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_11jaro_distance_bytes(PyObject *_
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaro_distance_bytes") < 0)) __PYX_ERR(0, 185, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaro_distance_bytes") < 0)) __PYX_ERR(0, 186, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -4688,13 +4690,13 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_11jaro_distance_bytes(PyObject *_
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaro_distance_bytes", 0, 3, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 185, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaro_distance_bytes", 0, 3, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 186, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("batch_jaro_winkler.jaro_distance_bytes", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_runtime_model), __pyx_ptype_18batch_jaro_winkler_RuntimeModel, 1, "runtime_model", 0))) __PYX_ERR(0, 185, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_runtime_model), __pyx_ptype_18batch_jaro_winkler_RuntimeModel, 1, "runtime_model", 0))) __PYX_ERR(0, 186, __pyx_L1_error)
   __pyx_r = __pyx_pf_18batch_jaro_winkler_10jaro_distance_bytes(__pyx_self, __pyx_v_char_width, __pyx_v_runtime_model, __pyx_v_inp, __pyx_v_min_score, __pyx_v_n_best_results);
 
   /* function exit code */
@@ -4718,7 +4720,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_10jaro_distance_bytes(CYTHON_UNUS
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("jaro_distance_bytes", 0);
 
-  /* "batch_jaro_winkler.pyx":186
+  /* "batch_jaro_winkler.pyx":187
  * 
  * def jaro_distance_bytes(char_width, RuntimeModel runtime_model, inp, min_score=None, n_best_results=None):
  *   return jaro_winkler_distance_bytes(char_width, runtime_model, inp, min_score=min_score, weight=None, threshold=None, n_best_results=n_best_results)             # <<<<<<<<<<<<<<
@@ -4726,9 +4728,9 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_10jaro_distance_bytes(CYTHON_UNUS
  * def jaro_distance(RuntimeModel runtime_model, inp, min_score=None, n_best_results=None):
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_jaro_winkler_distance_bytes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_jaro_winkler_distance_bytes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_char_width);
   __Pyx_GIVEREF(__pyx_v_char_width);
@@ -4739,13 +4741,13 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_10jaro_distance_bytes(CYTHON_UNUS
   __Pyx_INCREF(__pyx_v_inp);
   __Pyx_GIVEREF(__pyx_v_inp);
   PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_inp);
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_min_score, __pyx_v_min_score) < 0) __PYX_ERR(0, 186, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_weight, Py_None) < 0) __PYX_ERR(0, 186, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_threshold, Py_None) < 0) __PYX_ERR(0, 186, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_n_best_results, __pyx_v_n_best_results) < 0) __PYX_ERR(0, 186, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 186, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_min_score, __pyx_v_min_score) < 0) __PYX_ERR(0, 187, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_weight, Py_None) < 0) __PYX_ERR(0, 187, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_threshold, Py_None) < 0) __PYX_ERR(0, 187, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_n_best_results, __pyx_v_n_best_results) < 0) __PYX_ERR(0, 187, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -4754,7 +4756,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_10jaro_distance_bytes(CYTHON_UNUS
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "batch_jaro_winkler.pyx":185
+  /* "batch_jaro_winkler.pyx":186
  *   return jaro_winkler_distance_bytes(0, runtime_model, inp, min_score=min_score, weight=weight, threshold=threshold, n_best_results=n_best_results)
  * 
  * def jaro_distance_bytes(char_width, RuntimeModel runtime_model, inp, min_score=None, n_best_results=None):             # <<<<<<<<<<<<<<
@@ -4776,7 +4778,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_10jaro_distance_bytes(CYTHON_UNUS
   return __pyx_r;
 }
 
-/* "batch_jaro_winkler.pyx":188
+/* "batch_jaro_winkler.pyx":189
  *   return jaro_winkler_distance_bytes(char_width, runtime_model, inp, min_score=min_score, weight=None, threshold=None, n_best_results=n_best_results)
  * 
  * def jaro_distance(RuntimeModel runtime_model, inp, min_score=None, n_best_results=None):             # <<<<<<<<<<<<<<
@@ -4826,7 +4828,7 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_13jaro_distance(PyObject *__pyx_s
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_inp)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("jaro_distance", 0, 2, 4, 1); __PYX_ERR(0, 188, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("jaro_distance", 0, 2, 4, 1); __PYX_ERR(0, 189, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -4842,7 +4844,7 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_13jaro_distance(PyObject *__pyx_s
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaro_distance") < 0)) __PYX_ERR(0, 188, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "jaro_distance") < 0)) __PYX_ERR(0, 189, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -4863,13 +4865,13 @@ static PyObject *__pyx_pw_18batch_jaro_winkler_13jaro_distance(PyObject *__pyx_s
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("jaro_distance", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 188, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("jaro_distance", 0, 2, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 189, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("batch_jaro_winkler.jaro_distance", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_runtime_model), __pyx_ptype_18batch_jaro_winkler_RuntimeModel, 1, "runtime_model", 0))) __PYX_ERR(0, 188, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_runtime_model), __pyx_ptype_18batch_jaro_winkler_RuntimeModel, 1, "runtime_model", 0))) __PYX_ERR(0, 189, __pyx_L1_error)
   __pyx_r = __pyx_pf_18batch_jaro_winkler_12jaro_distance(__pyx_self, __pyx_v_runtime_model, __pyx_v_inp, __pyx_v_min_score, __pyx_v_n_best_results);
 
   /* function exit code */
@@ -4893,15 +4895,15 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_12jaro_distance(CYTHON_UNUSED PyO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("jaro_distance", 0);
 
-  /* "batch_jaro_winkler.pyx":189
+  /* "batch_jaro_winkler.pyx":190
  * 
  * def jaro_distance(RuntimeModel runtime_model, inp, min_score=None, n_best_results=None):
  *   return jaro_distance_bytes(0, runtime_model, inp, min_score=min_score, n_best_results=n_best_results)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_jaro_distance_bytes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_jaro_distance_bytes); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
@@ -4912,11 +4914,11 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_12jaro_distance(CYTHON_UNUSED PyO
   __Pyx_INCREF(__pyx_v_inp);
   __Pyx_GIVEREF(__pyx_v_inp);
   PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_inp);
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_min_score, __pyx_v_min_score) < 0) __PYX_ERR(0, 189, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_n_best_results, __pyx_v_n_best_results) < 0) __PYX_ERR(0, 189, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_min_score, __pyx_v_min_score) < 0) __PYX_ERR(0, 190, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_n_best_results, __pyx_v_n_best_results) < 0) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -4925,7 +4927,7 @@ static PyObject *__pyx_pf_18batch_jaro_winkler_12jaro_distance(CYTHON_UNUSED PyO
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "batch_jaro_winkler.pyx":188
+  /* "batch_jaro_winkler.pyx":189
  *   return jaro_winkler_distance_bytes(char_width, runtime_model, inp, min_score=min_score, weight=None, threshold=None, n_best_results=n_best_results)
  * 
  * def jaro_distance(RuntimeModel runtime_model, inp, min_score=None, n_best_results=None):             # <<<<<<<<<<<<<<
@@ -5202,10 +5204,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(0, 24, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 33, __pyx_L1_error)
-  __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 49, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -5215,14 +5217,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "batch_jaro_winkler.pyx":23
+  /* "batch_jaro_winkler.pyx":24
  *     self.model = cbatch_jaro_winkler_headers.bjw_build_runtime_model(PyBytes_AS_STRING(exportable_model))
  *     if not self.model:
  *       raise RuntimeError('batch_jaro_winkler.build_runtime_model failed')             # <<<<<<<<<<<<<<
  * 
  *   def __dealloc__(self):
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_u_batch_jaro_winkler_build_runtime); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_u_batch_jaro_winkler_build_runtime); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
@@ -5245,176 +5247,176 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "batch_jaro_winkler.pyx":33
+  /* "batch_jaro_winkler.pyx":34
  * def build_exportable_model_bytes(char_width, candidates, nb_runtime_threads=1):
  *   if nb_runtime_threads < 1:
  *     raise ValueError('nb_runtime_threads must be > 0')             # <<<<<<<<<<<<<<
  *   candidates_encoded = char_width != 0
  *   if not candidates_encoded:
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_u_nb_runtime_threads_must_be_0); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_u_nb_runtime_threads_must_be_0); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 34, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
-  /* "batch_jaro_winkler.pyx":38
+  /* "batch_jaro_winkler.pyx":39
  *     char_width = 4
  *   if char_width != 1 and char_width != 2 and char_width != 4:
  *     raise ValueError('char_width must be 1, 2 or 4')             # <<<<<<<<<<<<<<
  *   nb_candidates = len(candidates)
  *   with_min_scores = False
  */
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_u_char_width_must_be_1_2_or_4); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_u_char_width_must_be_1_2_or_4); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
-  /* "batch_jaro_winkler.pyx":53
+  /* "batch_jaro_winkler.pyx":54
  *       cand_string = cand['candidate']
  *       if cand['min_score'] < 0.0 or cand['min_score'] > 1.0:
  *         raise ValueError('min_score must be >= 0.0 and <= 1.0')             # <<<<<<<<<<<<<<
  *       c_min_scores[i_cand] = cand['min_score']
  *     if not candidates_encoded:
  */
-  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_u_min_score_must_be_0_0_and_1_0); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_u_min_score_must_be_0_0_and_1_0); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
-  /* "batch_jaro_winkler.pyx":68
+  /* "batch_jaro_winkler.pyx":69
  *     free(c_candidates_lengths)
  *     free(c_min_scores)
  *     raise RuntimeError('batch_jaro_winkler.build_exportable_model failed')             # <<<<<<<<<<<<<<
  *   # Makes a copy, would be better to directly use the buffer returned by the C function.
  *   cdef bytes res_exportable_model = (<stdint.uint8_t*> exportable_model)[:exportable_model_size]
  */
-  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_u_batch_jaro_winkler_build_exporta); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_u_batch_jaro_winkler_build_exporta); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
 
-  /* "batch_jaro_winkler.pyx":137
+  /* "batch_jaro_winkler.pyx":138
  *     raise ValueError('min_score must be >= 0.0 and <= 1.0')
  *   if weight is not None and (weight < 0.0 or weight > 0.25):
  *     raise ValueError('weight must be >= 0.0 and <= 0.25')             # <<<<<<<<<<<<<<
  *   if threshold is not None and (threshold < 0.0 or threshold > 1.0):
  *     raise ValueError('threshold must be >= 0.0 and <= 1.0')
  */
-  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_u_weight_must_be_0_0_and_0_25); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(1, __pyx_kp_u_weight_must_be_0_0_and_0_25); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
 
-  /* "batch_jaro_winkler.pyx":139
+  /* "batch_jaro_winkler.pyx":140
  *     raise ValueError('weight must be >= 0.0 and <= 0.25')
  *   if threshold is not None and (threshold < 0.0 or threshold > 1.0):
  *     raise ValueError('threshold must be >= 0.0 and <= 1.0')             # <<<<<<<<<<<<<<
  *   if n_best_results is not None and n_best_results < 0:
  *     raise ValueError('n_best_results must be >= 0')
  */
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_u_threshold_must_be_0_0_and_1_0); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_u_threshold_must_be_0_0_and_1_0); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
 
-  /* "batch_jaro_winkler.pyx":141
+  /* "batch_jaro_winkler.pyx":142
  *     raise ValueError('threshold must be >= 0.0 and <= 1.0')
  *   if n_best_results is not None and n_best_results < 0:
  *     raise ValueError('n_best_results must be >= 0')             # <<<<<<<<<<<<<<
  *   if n_best_results == 0:
  *     return []
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_u_n_best_results_must_be_0); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_u_n_best_results_must_be_0); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "batch_jaro_winkler.pyx":175
+  /* "batch_jaro_winkler.pyx":176
  *     c_results = cbatch_jaro_winkler_headers.bjw_jaro_winkler_distance(c_runtime_model, c_inp, c_input_length, c_min_score, c_weight, c_threshold, c_n_best_results, &nb_results)
  *   if not c_results:
  *     raise RuntimeError('batch_jaro_winkler.jaro_winkler_distance failed')             # <<<<<<<<<<<<<<
  * 
  *   results = c_results_to_python(c_results, nb_results, char_width, inp_encoded)
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_batch_jaro_winkler_jaro_winkler); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 175, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_batch_jaro_winkler_jaro_winkler); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 176, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
 
-  /* "batch_jaro_winkler.pyx":31
+  /* "batch_jaro_winkler.pyx":32
  * # - ['hi', 'hello']
  * # - [{ 'candidate': 'hi', 'min_score': 0.5 }, { 'candidate': 'hello', 'min_score': 0.8 }]
  * def build_exportable_model_bytes(char_width, candidates, nb_runtime_threads=1):             # <<<<<<<<<<<<<<
  *   if nb_runtime_threads < 1:
  *     raise ValueError('nb_runtime_threads must be > 0')
  */
-  __pyx_tuple__12 = PyTuple_Pack(16, __pyx_n_s_char_width, __pyx_n_s_candidates, __pyx_n_s_nb_runtime_threads, __pyx_n_s_candidates_encoded, __pyx_n_s_nb_candidates, __pyx_n_s_with_min_scores, __pyx_n_s_c_candidates, __pyx_n_s_c_candidates_lengths, __pyx_n_s_stored_candidates, __pyx_n_s_c_min_scores, __pyx_n_s_i_cand, __pyx_n_s_cand, __pyx_n_s_cand_string, __pyx_n_s_exportable_model_size, __pyx_n_s_exportable_model, __pyx_n_s_res_exportable_model); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(16, __pyx_n_s_char_width, __pyx_n_s_candidates, __pyx_n_s_nb_runtime_threads, __pyx_n_s_candidates_encoded, __pyx_n_s_nb_candidates, __pyx_n_s_with_min_scores, __pyx_n_s_c_candidates, __pyx_n_s_c_candidates_lengths, __pyx_n_s_stored_candidates, __pyx_n_s_c_min_scores, __pyx_n_s_i_cand, __pyx_n_s_cand, __pyx_n_s_cand_string, __pyx_n_s_exportable_model_size, __pyx_n_s_exportable_model, __pyx_n_s_res_exportable_model); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(3, 0, 16, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_build_exportable_model_bytes, 31, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(3, 0, 16, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_build_exportable_model_bytes, 32, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 32, __pyx_L1_error)
 
-  /* "batch_jaro_winkler.pyx":78
+  /* "batch_jaro_winkler.pyx":79
  *   return res_exportable_model
  * 
  * def build_exportable_model(candidates, nb_runtime_threads=1):             # <<<<<<<<<<<<<<
  *   return build_exportable_model_bytes(0, candidates, nb_runtime_threads)
  * 
  */
-  __pyx_tuple__14 = PyTuple_Pack(2, __pyx_n_s_candidates, __pyx_n_s_nb_runtime_threads); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_tuple__14 = PyTuple_Pack(2, __pyx_n_s_candidates, __pyx_n_s_nb_runtime_threads); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
-  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_build_exportable_model, 78, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_build_exportable_model, 79, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 79, __pyx_L1_error)
 
-  /* "batch_jaro_winkler.pyx":81
+  /* "batch_jaro_winkler.pyx":82
  *   return build_exportable_model_bytes(0, candidates, nb_runtime_threads)
  * 
  * def build_runtime_model(exportable_model):             # <<<<<<<<<<<<<<
  *   return RuntimeModel(exportable_model)
  * 
  */
-  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_n_s_exportable_model); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_tuple__16 = PyTuple_Pack(1, __pyx_n_s_exportable_model); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_build_runtime_model, 81, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_build_runtime_model, 82, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 82, __pyx_L1_error)
 
-  /* "batch_jaro_winkler.pyx":133
+  /* "batch_jaro_winkler.pyx":134
  *   return results
  * 
  * def jaro_winkler_distance_bytes(char_width, RuntimeModel runtime_model, inp, min_score=None, weight=0.1, threshold=0.7, n_best_results=None):             # <<<<<<<<<<<<<<
  *   if min_score is not None and (min_score < 0.0 or min_score > 1.0):
  *     raise ValueError('min_score must be >= 0.0 and <= 1.0')
  */
-  __pyx_tuple__18 = PyTuple_Pack(18, __pyx_n_s_char_width, __pyx_n_s_runtime_model, __pyx_n_s_inp, __pyx_n_s_min_score, __pyx_n_s_weight, __pyx_n_s_threshold, __pyx_n_s_n_best_results, __pyx_n_s_inp_encoded, __pyx_n_s_c_inp, __pyx_n_s_c_input_length, __pyx_n_s_c_runtime_model, __pyx_n_s_c_min_score, __pyx_n_s_c_weight, __pyx_n_s_c_threshold, __pyx_n_s_c_n_best_results, __pyx_n_s_nb_results, __pyx_n_s_c_results, __pyx_n_s_results); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_tuple__18 = PyTuple_Pack(18, __pyx_n_s_char_width, __pyx_n_s_runtime_model, __pyx_n_s_inp, __pyx_n_s_min_score, __pyx_n_s_weight, __pyx_n_s_threshold, __pyx_n_s_n_best_results, __pyx_n_s_inp_encoded, __pyx_n_s_c_inp, __pyx_n_s_c_input_length, __pyx_n_s_c_runtime_model, __pyx_n_s_c_min_score, __pyx_n_s_c_weight, __pyx_n_s_c_threshold, __pyx_n_s_c_n_best_results, __pyx_n_s_nb_results, __pyx_n_s_c_results, __pyx_n_s_results); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__18);
   __Pyx_GIVEREF(__pyx_tuple__18);
-  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(7, 0, 18, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_jaro_winkler_distance_bytes, 133, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(7, 0, 18, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_jaro_winkler_distance_bytes, 134, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 134, __pyx_L1_error)
 
-  /* "batch_jaro_winkler.pyx":182
+  /* "batch_jaro_winkler.pyx":183
  *   return results
  * 
  * def jaro_winkler_distance(RuntimeModel runtime_model, inp, min_score=None, weight=0.1, threshold=0.7, n_best_results=None):             # <<<<<<<<<<<<<<
  *   return jaro_winkler_distance_bytes(0, runtime_model, inp, min_score=min_score, weight=weight, threshold=threshold, n_best_results=n_best_results)
  * 
  */
-  __pyx_tuple__20 = PyTuple_Pack(6, __pyx_n_s_runtime_model, __pyx_n_s_inp, __pyx_n_s_min_score, __pyx_n_s_weight, __pyx_n_s_threshold, __pyx_n_s_n_best_results); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __pyx_tuple__20 = PyTuple_Pack(6, __pyx_n_s_runtime_model, __pyx_n_s_inp, __pyx_n_s_min_score, __pyx_n_s_weight, __pyx_n_s_threshold, __pyx_n_s_n_best_results); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__20);
   __Pyx_GIVEREF(__pyx_tuple__20);
-  __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(6, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_jaro_winkler_distance, 182, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(6, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_jaro_winkler_distance, 183, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(0, 183, __pyx_L1_error)
 
-  /* "batch_jaro_winkler.pyx":185
+  /* "batch_jaro_winkler.pyx":186
  *   return jaro_winkler_distance_bytes(0, runtime_model, inp, min_score=min_score, weight=weight, threshold=threshold, n_best_results=n_best_results)
  * 
  * def jaro_distance_bytes(char_width, RuntimeModel runtime_model, inp, min_score=None, n_best_results=None):             # <<<<<<<<<<<<<<
  *   return jaro_winkler_distance_bytes(char_width, runtime_model, inp, min_score=min_score, weight=None, threshold=None, n_best_results=n_best_results)
  * 
  */
-  __pyx_tuple__22 = PyTuple_Pack(5, __pyx_n_s_char_width, __pyx_n_s_runtime_model, __pyx_n_s_inp, __pyx_n_s_min_score, __pyx_n_s_n_best_results); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_tuple__22 = PyTuple_Pack(5, __pyx_n_s_char_width, __pyx_n_s_runtime_model, __pyx_n_s_inp, __pyx_n_s_min_score, __pyx_n_s_n_best_results); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 186, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__22);
   __Pyx_GIVEREF(__pyx_tuple__22);
-  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_jaro_distance_bytes, 185, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_jaro_distance_bytes, 186, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 186, __pyx_L1_error)
 
-  /* "batch_jaro_winkler.pyx":188
+  /* "batch_jaro_winkler.pyx":189
  *   return jaro_winkler_distance_bytes(char_width, runtime_model, inp, min_score=min_score, weight=None, threshold=None, n_best_results=n_best_results)
  * 
  * def jaro_distance(RuntimeModel runtime_model, inp, min_score=None, n_best_results=None):             # <<<<<<<<<<<<<<
  *   return jaro_distance_bytes(0, runtime_model, inp, min_score=min_score, n_best_results=n_best_results)
  */
-  __pyx_tuple__24 = PyTuple_Pack(4, __pyx_n_s_runtime_model, __pyx_n_s_inp, __pyx_n_s_min_score, __pyx_n_s_n_best_results); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 188, __pyx_L1_error)
+  __pyx_tuple__24 = PyTuple_Pack(4, __pyx_n_s_runtime_model, __pyx_n_s_inp, __pyx_n_s_min_score, __pyx_n_s_n_best_results); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__24);
   __Pyx_GIVEREF(__pyx_tuple__24);
-  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_jaro_distance, 188, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 188, __pyx_L1_error)
+  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(4, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cbatch_jaro_winkler_pyx, __pyx_n_s_jaro_distance, 189, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -5423,17 +5425,17 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 }
 
 static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
-  if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
-  __pyx_float_0_0 = PyFloat_FromDouble(0.0); if (unlikely(!__pyx_float_0_0)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __pyx_float_0_1 = PyFloat_FromDouble(0.1); if (unlikely(!__pyx_float_0_1)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __pyx_float_0_7 = PyFloat_FromDouble(0.7); if (unlikely(!__pyx_float_0_7)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __pyx_float_1_0 = PyFloat_FromDouble(1.0); if (unlikely(!__pyx_float_1_0)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __pyx_float_0_25 = PyFloat_FromDouble(0.25); if (unlikely(!__pyx_float_0_25)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __pyx_float_neg_1_0 = PyFloat_FromDouble(-1.0); if (unlikely(!__pyx_float_neg_1_0)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __pyx_int_2 = PyInt_FromLong(2); if (unlikely(!__pyx_int_2)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __pyx_int_4 = PyInt_FromLong(4); if (unlikely(!__pyx_int_4)) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_float_0_0 = PyFloat_FromDouble(0.0); if (unlikely(!__pyx_float_0_0)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_float_0_1 = PyFloat_FromDouble(0.1); if (unlikely(!__pyx_float_0_1)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_float_0_7 = PyFloat_FromDouble(0.7); if (unlikely(!__pyx_float_0_7)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_float_1_0 = PyFloat_FromDouble(1.0); if (unlikely(!__pyx_float_1_0)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_float_0_25 = PyFloat_FromDouble(0.25); if (unlikely(!__pyx_float_0_25)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_float_neg_1_0 = PyFloat_FromDouble(-1.0); if (unlikely(!__pyx_float_neg_1_0)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_2 = PyInt_FromLong(2); if (unlikely(!__pyx_int_2)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_4 = PyInt_FromLong(4); if (unlikely(!__pyx_int_4)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -5478,15 +5480,15 @@ static int __Pyx_modinit_type_init_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
-  if (PyType_Ready(&__pyx_type_18batch_jaro_winkler_RuntimeModel) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_18batch_jaro_winkler_RuntimeModel) < 0) __PYX_ERR(0, 14, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
   __pyx_type_18batch_jaro_winkler_RuntimeModel.tp_print = 0;
   #endif
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_18batch_jaro_winkler_RuntimeModel.tp_dictoffset && __pyx_type_18batch_jaro_winkler_RuntimeModel.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_18batch_jaro_winkler_RuntimeModel.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_RuntimeModel, (PyObject *)&__pyx_type_18batch_jaro_winkler_RuntimeModel) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_18batch_jaro_winkler_RuntimeModel) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_RuntimeModel, (PyObject *)&__pyx_type_18batch_jaro_winkler_RuntimeModel) < 0) __PYX_ERR(0, 14, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_18batch_jaro_winkler_RuntimeModel) < 0) __PYX_ERR(0, 14, __pyx_L1_error)
   __pyx_ptype_18batch_jaro_winkler_RuntimeModel = &__pyx_type_18batch_jaro_winkler_RuntimeModel;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -5637,30 +5639,30 @@ if (!__Pyx_RefNanny) {
 }
 #endif
   __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_batch_jaro_winkler(void)", 0);
-  if (__Pyx_check_binary_version() < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__Pyx_check_binary_version() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #ifdef __Pxy_PyFrame_Initialize_Offsets
   __Pxy_PyFrame_Initialize_Offsets();
   #endif
-  __pyx_empty_tuple = PyTuple_New(0); if (unlikely(!__pyx_empty_tuple)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __pyx_empty_bytes = PyBytes_FromStringAndSize("", 0); if (unlikely(!__pyx_empty_bytes)) __PYX_ERR(0, 3, __pyx_L1_error)
-  __pyx_empty_unicode = PyUnicode_FromStringAndSize("", 0); if (unlikely(!__pyx_empty_unicode)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_empty_tuple = PyTuple_New(0); if (unlikely(!__pyx_empty_tuple)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_empty_bytes = PyBytes_FromStringAndSize("", 0); if (unlikely(!__pyx_empty_bytes)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_empty_unicode = PyUnicode_FromStringAndSize("", 0); if (unlikely(!__pyx_empty_unicode)) __PYX_ERR(0, 1, __pyx_L1_error)
   #ifdef __Pyx_CyFunction_USED
-  if (__pyx_CyFunction_init() < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__pyx_CyFunction_init() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   #ifdef __Pyx_FusedFunction_USED
-  if (__pyx_FusedFunction_init() < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__pyx_FusedFunction_init() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   #ifdef __Pyx_Coroutine_USED
-  if (__pyx_Coroutine_init() < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__pyx_Coroutine_init() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   #ifdef __Pyx_Generator_USED
-  if (__pyx_Generator_init() < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__pyx_Generator_init() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   #ifdef __Pyx_AsyncGen_USED
-  if (__pyx_AsyncGen_init() < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__pyx_AsyncGen_init() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   #ifdef __Pyx_StopAsyncIteration_USED
-  if (__pyx_StopAsyncIteration_init() < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__pyx_StopAsyncIteration_init() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   /*--- Library function declarations ---*/
   /*--- Threads initialization code ---*/
@@ -5677,141 +5679,139 @@ if (!__Pyx_RefNanny) {
   #else
   __pyx_m = PyModule_Create(&__pyx_moduledef);
   #endif
-  if (unlikely(!__pyx_m)) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (unlikely(!__pyx_m)) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  __pyx_d = PyModule_GetDict(__pyx_m); if (unlikely(!__pyx_d)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_d = PyModule_GetDict(__pyx_m); if (unlikely(!__pyx_d)) __PYX_ERR(0, 1, __pyx_L1_error)
   Py_INCREF(__pyx_d);
-  __pyx_b = PyImport_AddModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_b)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_b = PyImport_AddModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_b)) __PYX_ERR(0, 1, __pyx_L1_error)
   Py_INCREF(__pyx_b);
-  __pyx_cython_runtime = PyImport_AddModule((char *) "cython_runtime"); if (unlikely(!__pyx_cython_runtime)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_cython_runtime = PyImport_AddModule((char *) "cython_runtime"); if (unlikely(!__pyx_cython_runtime)) __PYX_ERR(0, 1, __pyx_L1_error)
   Py_INCREF(__pyx_cython_runtime);
-  if (PyObject_SetAttrString(__pyx_m, "__builtins__", __pyx_b) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (PyObject_SetAttrString(__pyx_m, "__builtins__", __pyx_b) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   /*--- Initialize various global constants etc. ---*/
-  if (__Pyx_InitGlobals() < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__Pyx_InitGlobals() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
-  if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   if (__pyx_module_is_main_batch_jaro_winkler) {
-    if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+    if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
-    PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 3, __pyx_L1_error)
+    PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
     if (!PyDict_GetItemString(modules, "batch_jaro_winkler")) {
-      if (unlikely(PyDict_SetItemString(modules, "batch_jaro_winkler", __pyx_m) < 0)) __PYX_ERR(0, 3, __pyx_L1_error)
+      if (unlikely(PyDict_SetItemString(modules, "batch_jaro_winkler", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
   /*--- Builtin init code ---*/
-  if (__Pyx_InitCachedBuiltins() < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__Pyx_InitCachedBuiltins() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   /*--- Constants init code ---*/
-  if (__Pyx_InitCachedConstants() < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__Pyx_InitCachedConstants() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   /*--- Global type/function init code ---*/
   (void)__Pyx_modinit_global_init_code();
   (void)__Pyx_modinit_variable_export_code();
   (void)__Pyx_modinit_function_export_code();
-  if (unlikely(__Pyx_modinit_type_init_code() < 0)) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (unlikely(__Pyx_modinit_type_init_code() < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
   (void)__Pyx_modinit_type_import_code();
   (void)__Pyx_modinit_variable_import_code();
   (void)__Pyx_modinit_function_import_code();
   /*--- Execution code ---*/
   #if defined(__Pyx_Generator_USED) || defined(__Pyx_Coroutine_USED)
-  if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "batch_jaro_winkler.pyx":31
+  /* "batch_jaro_winkler.pyx":32
  * # - ['hi', 'hello']
  * # - [{ 'candidate': 'hi', 'min_score': 0.5 }, { 'candidate': 'hello', 'min_score': 0.8 }]
  * def build_exportable_model_bytes(char_width, candidates, nb_runtime_threads=1):             # <<<<<<<<<<<<<<
  *   if nb_runtime_threads < 1:
  *     raise ValueError('nb_runtime_threads must be > 0')
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_1build_exportable_model_bytes, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_1build_exportable_model_bytes, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_build_exportable_model_bytes, __pyx_t_1) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_build_exportable_model_bytes, __pyx_t_1) < 0) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "batch_jaro_winkler.pyx":78
+  /* "batch_jaro_winkler.pyx":79
  *   return res_exportable_model
  * 
  * def build_exportable_model(candidates, nb_runtime_threads=1):             # <<<<<<<<<<<<<<
  *   return build_exportable_model_bytes(0, candidates, nb_runtime_threads)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_3build_exportable_model, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_3build_exportable_model, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_build_exportable_model, __pyx_t_1) < 0) __PYX_ERR(0, 78, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_build_exportable_model, __pyx_t_1) < 0) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "batch_jaro_winkler.pyx":81
+  /* "batch_jaro_winkler.pyx":82
  *   return build_exportable_model_bytes(0, candidates, nb_runtime_threads)
  * 
  * def build_runtime_model(exportable_model):             # <<<<<<<<<<<<<<
  *   return RuntimeModel(exportable_model)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_5build_runtime_model, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_5build_runtime_model, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_build_runtime_model, __pyx_t_1) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_build_runtime_model, __pyx_t_1) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "batch_jaro_winkler.pyx":133
+  /* "batch_jaro_winkler.pyx":134
  *   return results
  * 
  * def jaro_winkler_distance_bytes(char_width, RuntimeModel runtime_model, inp, min_score=None, weight=0.1, threshold=0.7, n_best_results=None):             # <<<<<<<<<<<<<<
  *   if min_score is not None and (min_score < 0.0 or min_score > 1.0):
  *     raise ValueError('min_score must be >= 0.0 and <= 1.0')
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_7jaro_winkler_distance_bytes, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_7jaro_winkler_distance_bytes, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jaro_winkler_distance_bytes, __pyx_t_1) < 0) __PYX_ERR(0, 133, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jaro_winkler_distance_bytes, __pyx_t_1) < 0) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "batch_jaro_winkler.pyx":182
+  /* "batch_jaro_winkler.pyx":183
  *   return results
  * 
  * def jaro_winkler_distance(RuntimeModel runtime_model, inp, min_score=None, weight=0.1, threshold=0.7, n_best_results=None):             # <<<<<<<<<<<<<<
  *   return jaro_winkler_distance_bytes(0, runtime_model, inp, min_score=min_score, weight=weight, threshold=threshold, n_best_results=n_best_results)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_9jaro_winkler_distance, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_9jaro_winkler_distance, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jaro_winkler_distance, __pyx_t_1) < 0) __PYX_ERR(0, 182, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jaro_winkler_distance, __pyx_t_1) < 0) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "batch_jaro_winkler.pyx":185
+  /* "batch_jaro_winkler.pyx":186
  *   return jaro_winkler_distance_bytes(0, runtime_model, inp, min_score=min_score, weight=weight, threshold=threshold, n_best_results=n_best_results)
  * 
  * def jaro_distance_bytes(char_width, RuntimeModel runtime_model, inp, min_score=None, n_best_results=None):             # <<<<<<<<<<<<<<
  *   return jaro_winkler_distance_bytes(char_width, runtime_model, inp, min_score=min_score, weight=None, threshold=None, n_best_results=n_best_results)
  * 
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_11jaro_distance_bytes, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_11jaro_distance_bytes, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 186, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jaro_distance_bytes, __pyx_t_1) < 0) __PYX_ERR(0, 185, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jaro_distance_bytes, __pyx_t_1) < 0) __PYX_ERR(0, 186, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "batch_jaro_winkler.pyx":188
+  /* "batch_jaro_winkler.pyx":189
  *   return jaro_winkler_distance_bytes(char_width, runtime_model, inp, min_score=min_score, weight=None, threshold=None, n_best_results=n_best_results)
  * 
  * def jaro_distance(RuntimeModel runtime_model, inp, min_score=None, n_best_results=None):             # <<<<<<<<<<<<<<
  *   return jaro_distance_bytes(0, runtime_model, inp, min_score=min_score, n_best_results=n_best_results)
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_13jaro_distance, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_18batch_jaro_winkler_13jaro_distance, NULL, __pyx_n_s_batch_jaro_winkler); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jaro_distance, __pyx_t_1) < 0) __PYX_ERR(0, 188, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_jaro_distance, __pyx_t_1) < 0) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "batch_jaro_winkler.pyx":3
+  /* "batch_jaro_winkler.pyx":1
+ * # distutils: sources = ext/batch_jaro_winkler.c             # <<<<<<<<<<<<<<
+ * # distutils: include_dirs = ext
  * 
- * 
- * cimport cbatch_jaro_winkler_headers             # <<<<<<<<<<<<<<
- * from libc cimport stdint
- * from libc.stdlib cimport malloc, free
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_1) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_1) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /*--- Wrapped vars code ---*/

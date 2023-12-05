@@ -26,6 +26,10 @@ SOFTWARE.
 #define BJW_SUFFIX_HANDLER(name, type1, type2) BJW_SUFFIX_PASTER(name, type1, type2)
 #define BJW_SUFFIX(name) BJW_SUFFIX_HANDLER(name, BJW_CHAR_TYPE, BJW_CHAR_ACCESS_TYPE)
 
+#if defined(_WIN32) || defined(_WIN64)
+	#define bzero(b,len) (memset((b), '\0', (len)), (void) 0)  
+#endif
+
 // this represents the data needed for a candidate when finding matches
 typedef struct
 {
@@ -212,8 +216,8 @@ static void		BJW_SUFFIX(free_runtime_model)
 	uint32_t						i_thread;
 	uint32_t						nb_runtime_threads;
 
-	nb_runtime_threads = *((uint32_t*)(runtime_model + sizeof(uint32_t) * 0));
-	runtime_models = (BJW_SUFFIX(t_runtime_model)*)(runtime_model + sizeof(uint32_t) * 5);
+	nb_runtime_threads = *((uint32_t*)(((char*)runtime_model) + sizeof(uint32_t) * 0));
+	runtime_models = (BJW_SUFFIX(t_runtime_model)*)(((char*)runtime_model) + sizeof(uint32_t) * 5);
 	for (i_thread = 0; i_thread < nb_runtime_threads; i_thread++)
 		BJW_SUFFIX(free_runtime_model_for_thread)(&(runtime_models[i_thread]));
 	free(runtime_model);
@@ -230,12 +234,12 @@ static void		*BJW_SUFFIX(build_runtime_model)
 	res = malloc(sizeof(BJW_SUFFIX(t_runtime_model)) * nb_runtime_threads + sizeof(uint32_t) * 5);
 	if (!res)
 		return (NULL);
-	*((uint32_t*)(res + sizeof(uint32_t) * 0)) = nb_runtime_threads;
-	*((uint32_t*)(res + sizeof(uint32_t) * 1)) = nb_candidates;
-	*((uint32_t*)(res + sizeof(uint32_t) * 2)) = sizeof(BJW_CHAR_TYPE);
-	*((uint32_t*)(res + sizeof(uint32_t) * 3)) = sizeof(BJW_CHAR_ACCESS_TYPE);
-	*((uint32_t*)(res + sizeof(uint32_t) * 4)) = original_char_width;
-	runtime_models = res + sizeof(uint32_t) * 5;
+	*((uint32_t*)((char*)res + sizeof(uint32_t) * 0)) = nb_runtime_threads;
+	*((uint32_t*)((char*)res + sizeof(uint32_t) * 1)) = nb_candidates;
+	*((uint32_t*)((char*)res + sizeof(uint32_t) * 2)) = sizeof(BJW_CHAR_TYPE);
+	*((uint32_t*)((char*)res + sizeof(uint32_t) * 3)) = sizeof(BJW_CHAR_ACCESS_TYPE);
+	*((uint32_t*)((char*)res + sizeof(uint32_t) * 4)) = original_char_width;
+	runtime_models = (char*)res + sizeof(uint32_t) * 5;
 
 	for (i_thread = 0; i_thread < nb_runtime_threads; i_thread++)
 	{
@@ -426,7 +430,7 @@ static uint32_t		BJW_SUFFIX(jaro_winkler_distance_from_flags)
 		{
 			if (candidate_min_score <= 0.0f)
 			{
-				results[nb_results].candidate = runtime_model->original_candidates + original_char_width * candidate_decal;
+				results[nb_results].candidate = ((char*)(runtime_model->original_candidates)) + original_char_width * candidate_decal;
 				results[nb_results].score = 0.0f;
 				results[nb_results].candidate_length = candidate_data->candidate_length;
 				nb_results++;
@@ -458,7 +462,7 @@ static uint32_t		BJW_SUFFIX(jaro_winkler_distance_from_flags)
 		if (score < candidate_min_score)
 			continue ;
 
-		results[nb_results].candidate = runtime_model->original_candidates + original_char_width * candidate_decal;
+		results[nb_results].candidate = ((char*)(runtime_model->original_candidates)) + original_char_width * candidate_decal;
 		results[nb_results].score = score;
 		results[nb_results].candidate_length = candidate_data->candidate_length;
 		nb_results++;
