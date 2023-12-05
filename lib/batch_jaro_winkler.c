@@ -326,13 +326,13 @@ static uint8_t	*build_exportable_model_for_thread(
 		if (store_original_candidates)
 		{
 			memcpy(
-				res_original_candidates + (candidates_char_decal * original_char_width),
+				(char*)res_original_candidates + (candidates_char_decal * original_char_width),
 				original_candidates[sorted_candidates[i_candidate].original_ind],
 				sorted_candidates[i_candidate].candidate_length * original_char_width
 			);
 		}
 		memcpy(
-			res_compressed_candidates + (candidates_char_decal * compressed_char_width),
+			(char*)res_compressed_candidates + (candidates_char_decal * compressed_char_width),
 			sorted_candidates[i_candidate].candidate,
 			sorted_candidates[i_candidate].candidate_length * compressed_char_width
 		);
@@ -415,8 +415,10 @@ static void		*build_exportable_model(
 {
 	uint32_t			i_thread;
 	uint32_t			i;
-	uint8_t				*model_per_thread[nb_runtime_threads];
-	uint32_t			model_size_per_thread[nb_runtime_threads];
+/*	uint8_t				*model_per_thread[nb_runtime_threads]; GCC*/
+	uint8_t				**model_per_thread = malloc(sizeof(uint8_t*) * nb_runtime_threads);
+/*	uint32_t			model_size_per_thread[nb_runtime_threads]; GCC */
+	uint32_t			*model_size_per_thread = malloc(sizeof(uint32_t) * nb_runtime_threads);
 	uint8_t				*res_buffer;
 	uint8_t				*res_buffer_head;
 	void				**original_candidates_for_thread;
@@ -621,8 +623,8 @@ void	bjw_free_runtime_model(void *runtime_model)
 	uint32_t	char_width;
 	uint32_t	char_access_width;
 
-	char_width = *((uint32_t*)(runtime_model + sizeof(uint32_t) * 2));
-	char_access_width = *((uint32_t*)(runtime_model + sizeof(uint32_t) * 3));
+	char_width = *((uint32_t*)(((char*)runtime_model) + sizeof(uint32_t) * 2));
+	char_access_width = *((uint32_t*)(((char*)runtime_model) + sizeof(uint32_t) * 3));
 	
 	void (*free_function)(void*) = NULL;
 	if (char_width == 4 && char_access_width == 4)
@@ -727,11 +729,11 @@ bjw_result	*bjw_jaro_winkler_distance(void *runtime_model, void *input, uint32_t
 # endif
 #endif
 
-	nb_runtime_threads = *((uint32_t*)(runtime_model + sizeof(uint32_t) * 0));
-	nb_candidates = *((uint32_t*)(runtime_model + sizeof(uint32_t) * 1));
-	char_width = *((uint32_t*)(runtime_model + sizeof(uint32_t) * 2));
-	char_access_width = *((uint32_t*)(runtime_model + sizeof(uint32_t) * 3));
-	original_char_width = *((uint32_t*)(runtime_model + sizeof(uint32_t) * 4));
+	nb_runtime_threads = *((uint32_t*)(((char*)runtime_model) + sizeof(uint32_t) * 0));
+	nb_candidates = *((uint32_t*)(((char*)runtime_model) + sizeof(uint32_t) * 1));
+	char_width = *((uint32_t*)(((char*)runtime_model) + sizeof(uint32_t) * 2));
+	char_access_width = *((uint32_t*)(((char*)runtime_model) + sizeof(uint32_t) * 3));
+	original_char_width = *((uint32_t*)(((char*)runtime_model) + sizeof(uint32_t) * 4));
 
 	// Characters after 256 won't be taken into consideration for score calculation anyway, and uint8_t won't be able to represent the indices.
 	if (char_access_width == 1 && input_length >= 256)
@@ -810,7 +812,7 @@ bjw_result	*bjw_jaro_winkler_distance(void *runtime_model, void *input, uint32_t
 		for (i_thread = 0; i_thread < nb_runtime_threads; i_thread++)
 		{
 			threads_data[i_thread] = (t_thread_data){
-				.runtime_models = runtime_model + sizeof(uint32_t) * 5,
+				.runtime_models = ((char*)runtime_model) + sizeof(uint32_t) * 5,
 				.i_thread = i_thread,
 				.original_char_width = original_char_width,
 				.input = input,
