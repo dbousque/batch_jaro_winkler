@@ -1,1 +1,0 @@
-./local_build.sh && cp ../README.md README && python3 setup.py sdist && rm -Rf MANIFEST && twine upload dist/*

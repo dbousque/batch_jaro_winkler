@@ -1,1 +1,0 @@
-python3 cython_build.py build_ext --inplace && rm -Rf build && rm -Rf lib && rm -Rf batch_jaro_winkler*.so

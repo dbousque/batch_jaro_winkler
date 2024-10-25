@@ -1,0 +1,17 @@
+README.md
+cbatch_jaro_winkler.c
+pyproject.toml
+setup.cfg
+setup.py
+batch_jaro_winkler.egg-info/PKG-INFO
+batch_jaro_winkler.egg-info/SOURCES.txt
+batch_jaro_winkler.egg-info/dependency_links.txt
+batch_jaro_winkler.egg-info/top_level.txt
+ext/LICENSE.uthash.txt
+ext/batch_jaro_winkler.c
+ext/batch_jaro_winkler.h
+ext/batch_jaro_winkler_internal.h
+ext/batch_jaro_winkler_runtime.h
+ext/uthash.h
+test/test_behavior.py
+test/test_correctness.py
